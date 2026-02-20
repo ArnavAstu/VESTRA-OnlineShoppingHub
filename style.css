@@ -173,5 +173,11 @@ width: 1515px;
   text-decoration: none;
 }
 
+.doj:hover{
+  transform: scale(1.1);
+  transition: 0.2s;
+};
+
+
 
 

@@ -39,4 +39,11 @@ document.addEventListener("DOMContentLoaded", () => {
     showSlide(index + 1);
   }, 3000);
 
+  document.querySelector(".im").addEventListener("click", ()=>{
+    window.open("./index.html","_self");
+  }
+
+  
+);
+
 });
