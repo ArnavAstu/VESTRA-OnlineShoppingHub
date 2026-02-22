@@ -1,11 +1,13 @@
 const express = require("express");
 const cors = require("cors");
 const { Pool } = require("pg");
+const path = require("path");
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, "../"))); 
 
 const pool = new Pool({
   user: "postgres",
@@ -15,58 +17,39 @@ const pool = new Pool({
   port: 5432,
 });
 
-app.get("/men-products", async (req, res) => {
-  try {
-    const result = await pool.query(
-      "SELECT * FROM products WHERE category = 'men'"
-    );
-    res.json(result.rows);
-  } catch (err) {
-    console.log(err);
-  }
-});
 
-app.get("/kids-products", async (req, res) => {
+app.get("/products", async (req, res) => {
   try {
-    const result = await pool.query(
-      "SELECT * FROM products WHERE category = 'kids'"
-    );
-    res.json(result.rows);
-  } catch (err) {
-    console.log(err);
-  }
-});
 
-app.get("/footwear-products", async (req, res) => {
-  const result = await pool.query(
-    "SELECT * FROM products WHERE category = 'footwear'"
-  );
-  res.json(result.rows);
-});
+    const { category, sort } = req.query;
 
-app.get("/beauty-products", async (req, res) => {
-  try {
-    const result = await pool.query(
-      "SELECT * FROM products WHERE category = 'beauty'"
-    );
+    if (!category) {
+      return res.status(400).json({ error: "Category is required" });
+    }
+
+    let query = "SELECT * FROM products WHERE category = $1";
+    let values = [category];
+
+    if (sort === "price-asc") {
+      query += " ORDER BY price ASC";
+    } 
+    else if (sort === "price-desc") {
+      query += " ORDER BY price DESC";
+    } 
+    else if (sort === "rating-desc") {
+      query += " ORDER BY rating DESC";
+    }
+
+    const result = await pool.query(query, values);
+
     res.json(result.rows);
+
   } catch (err) {
-    console.error(err);
+    console.error("PRODUCT ROUTE ERROR:", err);
     res.status(500).send("Database error");
   }
 });
 
-app.get("/women-products", async (req, res) => {
-  try {
-    const result = await pool.query(
-      "SELECT * FROM products WHERE category = 'women'"
-    );
-    res.json(result.rows);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Database error");
-  }
-});
 
 app.listen(5000, () => {
   console.log("Server running on port 5000");
