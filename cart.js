@@ -325,4 +325,26 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('bag-items')) {
     renderBagPage();
   }
+  
+  // Listen for storage changes (cross-tab real-time updates)
+  window.addEventListener('storage', (e) => {
+    if (e.key === WISHLIST_KEY || e.key === BAG_KEY) {
+      updateWishlistCount();
+      updateBagCount();
+      
+      // Re-render pages if on wishlist or bag page
+      if (document.getElementById('wishlist-items')) {
+        renderWishlistPage();
+      }
+      if (document.getElementById('bag-items')) {
+        renderBagPage();
+      }
+    }
+  });
 });
+
+// Poll every 500ms for immediate updates on same page
+setInterval(() => {
+  updateWishlistCount();
+  updateBagCount();
+}, 500);
