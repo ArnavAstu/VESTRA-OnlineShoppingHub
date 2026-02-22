@@ -118,64 +118,69 @@
   window.menProducts = [
     {
       id: 'men-1',
-      name: 'Classic Cotton Shirt',
+      name: 'Classic Cotton T-Shirt',
       brand: 'Vestra Basics',
       price: 899,
-      image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_13_22 PM.png'
+      image: './pics/menPICS/tshirt1.png'
     },
     {
       id: 'men-2',
       name: 'Slim Fit Jeans',
       brand: 'Vestra Denim',
       price: 1299,
-      image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_13_34 PM.png'
+      image: './pics/menPICS/jeans1.png'
     },
     {
       id: 'men-3',
-      name: 'Casual T-Shirt Pack',
+      name: 'Casual T-Shirt',
       brand: 'Vestra Active',
       price: 699,
-      image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_13_40 PM.png'
+      image: './pics/menPICS/tshirt2.png'
     },
     {
       id: 'men-4',
-      name: 'Formal Blazer',
+      name: 'Formal Shirt',
       brand: 'Vestra Premium',
       price: 2999,
-      image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_13_45 PM.png'
+      image: './pics/menPICS/shirt1.png'
     },
     {
       id: 'men-5',
-      name: 'Wool Sweater',
+      name: 'Wool Sweatshirt',
       brand: 'Vestra Winter',
       price: 1599,
-      image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_13_49 PM.png'
+      image: './pics/menPICS/sweatshirt1.png'
     },
     {
       id: 'men-6',
-      name: 'Cargo Trousers',
+      name: 'Casual Pants',
       brand: 'Vestra Outdoor',
       price: 1199,
-      image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_15_33 PM.png'
+      image: './pics/menPICS/pant1.png'
     },
     {
       id: 'men-7',
-      name: 'Polo T-Shirt',
+      name: 'Designer T-Shirt',
       brand: 'Vestra Sport',
       price: 749,
-      image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_23_02 PM.png'
+      image: './pics/menPICS/tshirt3.png'
     },
     {
       id: 'men-8',
-      name: 'Leather Belt Set',
+      name: 'Hoodie',
       brand: 'Vestra Accessories',
       price: 599,
-      image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_23_09 PM.png'
+      image: './pics/menPICS/hoodie1.png'
     }
   ];
 
-  // Render products
-  document.getElementById('men-products').innerHTML = menProducts.map(product => createProductCard(product)).join('');
+  // Render products when DOM is ready
+  document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('men-products');
+    if (container && window.menProducts) {
+      container.innerHTML = window.menProducts.map(product => createProductCard(product)).join('');
+    }
+  });
 </script>
 </body>
 </html>

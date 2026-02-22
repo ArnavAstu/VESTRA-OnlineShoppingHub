@@ -121,33 +121,38 @@
       name: 'Kids Cotton Frock',
       brand: 'Vestra Kids',
       price: 799,
-      image: './pics/kids pics/ChatGPT Image Feb 8, 2026, 11_01_06 PM.png'
+      image: './pics/kidsPICS/pic1.jpg'
     },
     {
       id: 'kids-2',
       name: 'Boys Denim Set',
       brand: 'Vestra Kids',
       price: 999,
-      image: './pics/kids pics/ChatGPT Image Feb 8, 2026, 11_01_22 PM.png'
+      image: './pics/kidsPICS/j1.jpg'
     },
     {
       id: 'kids-3',
       name: 'Girls Party Dress',
       brand: 'Vestra Kids',
       price: 1299,
-      image: './pics/kids pics/ChatGPT Image Feb 8, 2026, 11_01_29 PM.png'
+      image: './pics/kidsPICS/pic2.jpg'
     },
     {
       id: 'kids-4',
       name: 'Kids Winter Jacket',
       brand: 'Vestra Kids',
       price: 1499,
-      image: './pics/kids pics/ChatGPT Image Feb 8, 2026, 11_06_02 PM.png'
+      image: './pics/kidsPICS/j3.jpg'
     }
   ];
 
-  // Render products
-  document.getElementById('kids-products').innerHTML = kidsProducts.map(product => createProductCard(product)).join('');
+  // Render products when DOM is ready
+  document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('kids-products');
+    if (container && window.kidsProducts) {
+      container.innerHTML = window.kidsProducts.map(product => createProductCard(product)).join('');
+    }
+  });
 </script>
 </body>
 </html>

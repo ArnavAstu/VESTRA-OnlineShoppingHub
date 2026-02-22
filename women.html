@@ -114,54 +114,59 @@
 
 <script src="cart.js"></script>
 <script>
-  // Sample products for Women - Make globally accessible
+  // Sample products for Women
   window.womenProducts = [
     {
       id: 'women-1',
       name: 'Floral Summer Dress',
       brand: 'Vestra Style',
       price: 1499,
-      image: './pics/panel/ChatGPT Image Feb 8, 2026, 07_18_33 PM.png'
+      image: './pics/panel/women.png'
     },
     {
       id: 'women-2',
-      name: 'Silk Saree',
+      name: 'Classic Top',
       brand: 'Vestra Ethnic',
       price: 2999,
-      image: './pics/panel/ChatGPT Image Feb 8, 2026, 07_19_09 PM.png'
+      image: './pics/menPICS/shirt2.png'
     },
     {
       id: 'women-3',
       name: 'Denim Jacket',
       brand: 'Vestra Denim',
       price: 1899,
-      image: './pics/panel/ChatGPT Image Feb 8, 2026, 07_19_23 PM.png'
+      image: './pics/menPICS/jeans3.png'
     },
     {
       id: 'women-4',
-      name: 'Leather Handbag',
+      name: 'Casual Pants',
       brand: 'Vestra Accessories',
       price: 2499,
-      image: './pics/panel/ChatGPT Image Feb 8, 2026, 07_19_39 PM.png'
+      image: './pics/menPICS/pant2.png'
     },
     {
       id: 'women-5',
-      name: 'Designer Kurti',
+      name: 'Designer T-Shirt',
       brand: 'Vestra Ethnic',
       price: 1199,
-      image: './pics/panel/ChatGPT Image Feb 8, 2026, 07_19_53 PM.png'
+      image: './pics/menPICS/tshirt4.png'
     },
     {
       id: 'women-6',
-      name: 'Casual Palazzo Set',
+      name: 'Slim Fit Jeans',
       brand: 'Vestra Comfort',
       price: 999,
-      image: './pics/panel/women.png'
+      image: './pics/menPICS/jeans4.png'
     }
   ];
 
-  // Render products
-  document.getElementById('women-products').innerHTML = womenProducts.map(product => createProductCard(product)).join('');
+  // Render products when DOM is ready
+  document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('women-products');
+    if (container && window.womenProducts) {
+      container.innerHTML = window.womenProducts.map(product => createProductCard(product)).join('');
+    }
+  });
 </script>
 </body>
 </html>

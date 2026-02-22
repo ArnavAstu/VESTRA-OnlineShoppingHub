@@ -114,7 +114,7 @@
 
 <script src="cart.js"></script>
 <script>
-  // Sample products for Beauty - Make globally accessible
+  // Sample products for Beauty
   window.beautyProducts = [
     {
       id: 'beauty-1',
@@ -146,8 +146,13 @@
     }
   ];
 
-  // Render products
-  document.getElementById('beauty-products').innerHTML = beautyProducts.map(product => createProductCard(product)).join('');
+  // Render products when DOM is ready
+  document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('beauty-products');
+    if (container && window.beautyProducts) {
+      container.innerHTML = window.beautyProducts.map(product => createProductCard(product)).join('');
+    }
+  });
 </script>
 </body>
 </html>
