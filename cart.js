@@ -149,16 +149,16 @@ function showNotification(message) {
   
   const notification = document.createElement('div');
   notification.className = 'vestra-notification';
-  notification.innerHTML = `<i class="fa-solid fa-check-circle"></i> ${message}`;
+  notification.innerHTML = '<i class="fa-solid fa-check-circle"></i> ' + message;
   document.body.appendChild(notification);
   
-  requestAnimationFrame(() => {
+  requestAnimationFrame(function() {
     notification.classList.add('show');
   });
   
-  setTimeout(() => {
+  setTimeout(function() {
     notification.classList.remove('show');
-    setTimeout(() => {
+    setTimeout(function() {
       if (notification.parentNode) {
         document.body.removeChild(notification);
       }
@@ -186,37 +186,36 @@ function renderWishlistPage() {
   const wishlist = getWishlist();
   
   if (wishlist.length === 0) {
-    container.innerHTML = `
-      <div class="empty-state">
-        <i class="fa-regular fa-heart"></i>
-        <h2>Your Wishlist is Empty</h2>
-        <p>Save your favorite items here!</p>
-        <a href="index.html" class="btn-primary">Start Shopping</a>
-      </div>
-    `;
+    container.innerHTML = 
+      '<div class="empty-state">' +
+        '<i class="fa-regular fa-heart"></i>' +
+        '<h2>Your Wishlist is Empty</h2>' +
+        '<p>Save your favorite items here!</p>' +
+        '<a href="index.html" class="btn-primary">Start Shopping</a>' +
+      '</div>';
     return;
   }
   
-  container.innerHTML = wishlist.map(product => `
-    <div class="product-card">
-      <div class="product-image">
-        <img src="${product.image}" alt="${product.name}">
-        <button class="remove-wishlist" onclick="removeFromWishlist('${product.id}')">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-      <div class="product-info">
-        <h3>${product.name}</h3>
-        <p class="brand">${product.brand}</p>
-        <p class="price">₹${product.price}</p>
-        <div class="product-actions">
-          <button class="btn-add-bag" onclick="moveToBag('${product.id}')">
-            <i class="fa-solid fa-bag-shopping"></i> Move to Bag
-          </button>
-        </div>
-      </div>
-    </div>
-  `).join('');
+  container.innerHTML = wishlist.map(function(product) {
+    return '<div class="product-card">' +
+      '<div class="product-image">' +
+        '<img src="' + product.image + '" alt="' + product.name + '">' +
+        '<button class="remove-wishlist" onclick="removeFromWishlist(\'' + product.id + '\')">' +
+          '<i class="fa-solid fa-xmark"></i>' +
+        '</button>' +
+      '</div>' +
+      '<div class="product-info">' +
+        '<h3>' + product.name + '</h3>' +
+        '<p class="brand">' + product.brand + '</p>' +
+        '<p class="price">₹' + product.price + '</p>' +
+        '<div class="product-actions">' +
+          '<button class="btn-add-bag" onclick="moveToBag(\'' + product.id + '\')">' +
+            '<i class="fa-solid fa-bag-shopping"></i> Move to Bag' +
+          '</button>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
   
   updateWishlistCount();
 }
@@ -231,84 +230,86 @@ function renderBagPage() {
   const bag = getBag();
   
   if (bag.length === 0) {
-    container.innerHTML = `
-      <div class="empty-state">
-        <i class="fa-solid fa-bag-shopping"></i>
-        <h2>Your Bag is Empty</h2>
-        <p>Add items to your bag to get started!</p>
-        <a href="index.html" class="btn-primary">Start Shopping</a>
-      </div>
-    `;
+    container.innerHTML = 
+      '<div class="empty-state">' +
+        '<i class="fa-solid fa-bag-shopping"></i>' +
+        '<h2>Your Bag is Empty</h2>' +
+        '<p>Add items to your bag to get started!</p>' +
+        '<a href="index.html" class="btn-primary">Start Shopping</a>' +
+      '</div>';
     if (totalContainer) totalContainer.style.display = 'none';
     return;
   }
   
-  container.innerHTML = bag.map((item, index) => `
-    <div class="bag-item">
-      <div class="bag-item-image">
-        <img src="${item.image}" alt="${item.name}">
-      </div>
-      <div class="bag-item-details">
-        <h3>${item.name}</h3>
-        <p class="brand">${item.brand}</p>
-        ${item.size ? `<p class="size">Size: ${item.size}</p>` : ''}
-        ${item.color ? `<p class="color">Color: ${item.color}</p>` : ''}
-        <p class="price">₹${item.price}</p>
-      </div>
-      <div class="bag-item-actions">
-        <div class="quantity-control">
-          <button onclick="updateQuantity('${item.id}', '${item.size}', '${item.color}', -1)">-</button>
-          <span>${item.quantity}</span>
-          <button onclick="updateQuantity('${item.id}', '${item.size}', '${item.color}', 1)">+</button>
-        </div>
-        <button class="btn-remove" onclick="removeFromBag('${item.id}', '${item.size}', '${item.color}')">
-          <i class="fa-solid fa-trash"></i> Remove
-        </button>
-      </div>
-      <div class="bag-item-total">
-        ₹${item.price * item.quantity}
-      </div>
-    </div>
-  `).join('');
+  container.innerHTML = bag.map(function(item) {
+    return '<div class="bag-item">' +
+      '<div class="bag-item-image">' +
+        '<img src="' + item.image + '" alt="' + item.name + '">' +
+      '</div>' +
+      '<div class="bag-item-details">' +
+        '<h3>' + item.name + '</h3>' +
+        '<p class="brand">' + item.brand + '</p>' +
+        (item.size ? '<p class="size">Size: ' + item.size + '</p>' : '') +
+        (item.color ? '<p class="color">Color: ' + item.color + '</p>' : '') +
+        '<p class="price">₹' + item.price + '</p>' +
+      '</div>' +
+      '<div class="bag-item-actions">' +
+        '<div class="quantity-control">' +
+          '<button onclick="updateQuantity(\'' + item.id + '\', \'' + item.size + '\', \'' + item.color + '\', -1)">-</button>' +
+          '<span>' + item.quantity + '</span>' +
+          '<button onclick="updateQuantity(\'' + item.id + '\', \'' + item.size + '\', \'' + item.color + '\', 1)">+</button>' +
+        '</div>' +
+        '<button class="btn-remove" onclick="removeFromBag(\'' + item.id + '\', \'' + item.size + '\', \'' + item.color + '\')">' +
+          '<i class="fa-solid fa-trash"></i> Remove' +
+        '</button>' +
+      '</div>' +
+      '<div class="bag-item-total">' +
+        '₹' + (item.price * item.quantity) +
+      '</div>' +
+    '</div>';
+  }).join('');
   
   const total = getBagTotal();
   if (totalContainer) {
     totalContainer.style.display = 'block';
-    document.getElementById('total-amount').textContent = `₹${total}`;
+    document.getElementById('total-amount').textContent = '₹' + total;
   }
   
   updateBagCount();
 }
 
-// Create product card HTML with proper heart icon
+// Create product card HTML
 function createProductCard(product) {
   const inWishlist = isInWishlist(product.id);
   const heartClass = inWishlist ? 'fa-solid' : 'fa-regular';
   const activeClass = inWishlist ? 'active' : '';
   
-  return `
-    <div class="product-card">
-      <div class="product-image">
-        <img src="${product.image}" alt="${product.name}">
-        <button class="btn-wishlist ${activeClass}" onclick="handleWishlistClick(${JSON.stringify(product).replace(/"/g, '"')})">
-          <i class="${heartClass} fa-heart"></i>
-        </button>
-      </div>
-      <div class="product-info">
-        <h3>${product.name}</h3>
-        <p class="brand">${product.brand}</p>
-        <p class="price">₹${product.price}</p>
-        <button class="btn-add-bag" onclick="addToBagFromCard(${JSON.stringify(product).replace(/"/g, '"')})">
-          <i class="fa-solid fa-bag-shopping"></i> Add to Bag
-        </button>
-      </div>
-    </div>
-  `;
+  // Store product in a global object with unique key
+  var productKey = 'prod_' + product.id;
+  window[productKey] = product;
+  
+  return '<div class="product-card">' +
+    '<div class="product-image">' +
+      '<img src="' + product.image + '" alt="' + product.name + '">' +
+      '<button class="btn-wishlist ' + activeClass + '" onclick="handleWishlistClick(\'' + productKey + '\')">' +
+        '<i class="' + heartClass + ' fa-heart"></i>' +
+      '</button>' +
+    '</div>' +
+    '<div class="product-info">' +
+      '<h3>' + product.name + '</h3>' +
+      '<p class="brand">' + product.brand + '</p>' +
+      '<p class="price">₹' + product.price + '</p>' +
+      '<button class="btn-add-bag" onclick="handleAddToBag(\'' + productKey + '\')">' +
+        '<i class="fa-solid fa-bag-shopping"></i> Add to Bag' +
+      '</button>' +
+    '</div>' +
+  '</div>';
 }
 
-// Handle wishlist click with proper UI update
-function handleWishlistClick(product) {
-  const inWishlist = isInWishlist(product.id);
+// Handle wishlist click
+function handleWishlistClick(productKey) {
+  var product = window[productKey];
+  var inWishlist = isInWishlist(product.id);
   
   if (inWishlist) {
     removeFromWishlist(product.id);
@@ -319,9 +320,15 @@ function handleWishlistClick(product) {
   renderAllProductGrids();
 }
 
+// Handle add to bag click
+function handleAddToBag(productKey) {
+  var product = window[productKey];
+  addToBag(product);
+}
+
 // Render all product grids on the page
 function renderAllProductGrids() {
-  const gridConfigs = [
+  var gridConfigs = [
     { gridId: 'men-products', productsVar: 'menProducts' },
     { gridId: 'women-products', productsVar: 'womenProducts' },
     { gridId: 'kids-products', productsVar: 'kidsProducts' },
@@ -330,12 +337,14 @@ function renderAllProductGrids() {
     { gridId: 'featured-products', productsVar: 'featuredProducts' }
   ];
   
-  gridConfigs.forEach(config => {
-    const container = document.getElementById(config.gridId);
+  gridConfigs.forEach(function(config) {
+    var container = document.getElementById(config.gridId);
     if (container && window[config.productsVar]) {
-      const products = window[config.productsVar];
+      var products = window[config.productsVar];
       if (products) {
-        container.innerHTML = products.map(product => createProductCard(product)).join('');
+        container.innerHTML = products.map(function(product) {
+          return createProductCard(product);
+        }).join('');
       }
     }
   });
@@ -357,7 +366,7 @@ function addToBagFromCard(product) {
 }
 
 // Initialize on page load
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
   updateWishlistCount();
   updateBagCount();
   
@@ -369,7 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderBagPage();
   }
   
-  window.addEventListener('storage', (e) => {
+  window.addEventListener('storage', function(e) {
     if (e.key === WISHLIST_KEY || e.key === BAG_KEY) {
       updateWishlistCount();
       updateBagCount();
@@ -386,7 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Poll every 500ms for immediate updates
-setInterval(() => {
+setInterval(function() {
   updateWishlistCount();
   updateBagCount();
 }, 500);
