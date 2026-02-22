@@ -44,6 +44,30 @@ app.get("/footwear-products", async (req, res) => {
   res.json(result.rows);
 });
 
+app.get("/beauty-products", async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT * FROM products WHERE category = 'beauty'"
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Database error");
+  }
+});
+
+app.get("/women-products", async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT * FROM products WHERE category = 'women'"
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Database error");
+  }
+});
+
 app.listen(5000, () => {
   console.log("Server running on port 5000");
 });
