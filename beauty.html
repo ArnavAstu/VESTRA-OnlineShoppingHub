@@ -64,7 +64,17 @@
 
   <div class="category-header">
     <h1>Beauty</h1>
-    <p>Discover beauty products for every style</p>
+    <p>Enhance your beauty with premium products</p>
+  </div>
+
+  <div class="sort-container">
+    <label for="sortSelect">Sort By:</label>
+    <select id="sortSelect">
+      <option value="">Default</option>
+      <option value="price-asc">Price: Low to High</option>
+      <option value="price-desc">Price: High to Low</option>
+      <option value="rating-desc">Rating: High to Low</option>
+    </select>
   </div>
 
   <div class="product-grid" id="beauty-products">
@@ -118,49 +128,49 @@
       id: 'beauty-1',
       name: 'Lipstick Set',
       brand: 'Vestra Beauty',
-      price: 599,
+      price: 899,
       discount: 30,
-      image: './pics/beautyPICS/pic1.png'
+      image: './pics/beautyPICS/lipstick.jpg'
     },
     {
       id: 'beauty-2',
       name: 'Foundation',
       brand: 'Vestra Makeup',
-      price: 899,
+      price: 1499,
       discount: 25,
-      image: './pics/beautyPICS/pic2.png'
+      image: './pics/beautyPICS/foundation.jpg'
     },
     {
       id: 'beauty-3',
       name: 'Perfume',
       brand: 'Vestra Fragrance',
-      price: 1499,
+      price: 2499,
       discount: 35,
-      image: './pics/beautyPICS/pic3.png'
+      image: './pics/beautyPICS/perfume.jpg'
     },
     {
       id: 'beauty-4',
       name: 'Skincare Kit',
-      brand: 'Vestra Care',
-      price: 1199,
+      brand: 'Vestra Skincare',
+      price: 1999,
       discount: 40,
-      image: './pics/beautyPICS/pic4.png'
+      image: './pics/beautyPICS/skincare.jpg'
     },
     {
       id: 'beauty-5',
-      name: 'Eye Palette',
-      brand: 'Vestra Makeup',
-      price: 799,
-      discount: 20,
-      image: './pics/beautyPICS/pic5.png'
+      name: 'Hair Oil',
+      brand: 'Vestra Haircare',
+      price: 399,
+      discount: 15,
+      image: './pics/beautyPICS/hairoil.jpg'
     },
     {
       id: 'beauty-6',
       name: 'Nail Polish Set',
       brand: 'Vestra Beauty',
-      price: 399,
-      discount: 15,
-      image: './pics/beautyPICS/pic6.png'
+      price: 599,
+      discount: 20,
+      image: './pics/beautyPICS/nailpolish.jpg'
     }
   ];
 
