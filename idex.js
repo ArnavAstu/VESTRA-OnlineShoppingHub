@@ -1,41 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  const navLinks = {
+    menp: "men.html",
+    womenp: "women.html",
+    childp: "kids.html",
+    footp: "footwear.html",
+    beautyp: "beauty.html"
+  };
 
-  const menp = document.getElementById("menp");
-  if (menp) {
-    menp.addEventListener("click", () => {
-      window.open("./men.html", "_blank");
-    });
-  }
-
-  const womenp = document.getElementById("womenp");
-  if (womenp) {
-    womenp.addEventListener("click", () => {
-      window.open("./women.html", "_blank");
-    });
-  }
-
-  const childp = document.getElementById("childp");
-  if (childp) {
-    childp.addEventListener("click", () => {
-      window.open("./kids.html", "_blank");
-    });
-  }
-
-  const footp = document.getElementById("footp");
-  if (footp) {
-    footp.addEventListener("click", () => {
-      window.open("./footwear.html", "_blank");
-    });
-  }
-
-  const beautyp = document.getElementById("beautyp");
-  if (beautyp) {
-    beautyp.addEventListener("click", () => {
-      window.open("./beauty.html", "_blank");
-    });
-  }
-
+  Object.keys(navLinks).forEach(id => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.addEventListener("click", () => {
+        window.open(`./${navLinks[id]}`, "_blank");
+      });
+    }
+  });
 
   const slide = document.querySelector(".slide");
 
@@ -49,16 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let index = 0;
 
-    function showSlide(i) {
-      index = (i + slides.length) % slides.length;
-      slide.src = slides[index];
-    }
-
     setInterval(() => {
-      showSlide(index + 1);
+      index = (index + 1) % slides.length;
+      slide.src = slides[index];
     }, 3000);
   }
-
 
   const logo = document.querySelector(".im");
   if (logo) {
@@ -67,53 +42,62 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const container = document.getElementById("productContainer");
+ const container = document.getElementById("productContainer");
 
-  if (container) {
-    fetch("http://localhost:5000/products")
-      .then(res => res.json())
-      .then(products => {
+if (container && typeof pageCategory !== "undefined") {
 
-        products.forEach(product => {
+  fetch(`http://localhost:5000/${pageCategory}-products`)
+    .then(res => res.json())
+    .then(products => {
 
-          const card = document.createElement("div");
-          card.classList.add("product-card");
+      container.innerHTML = "";
 
-          card.innerHTML = `
-            <div class="image-wrapper">
-              <img 
-                src="${product.image}" 
-                alt="${product.name}"
-                onmouseover="this.src='${product.hover_image}'"
-                onmouseout="this.src='${product.image}'"
-              >
+      if (products.length === 0) {
+        container.innerHTML = "<h3>No products found.</h3>";
+        return;
+      }
+
+      products.forEach(product => {
+
+        const card = document.createElement("div");
+        card.classList.add("product-card");
+
+        card.innerHTML = `
+          <div class="image-wrapper">
+            <img 
+              src="${product.image}" 
+              alt="${product.name}"
+              onmouseover="this.src='${product.hover_image}'"
+              onmouseout="this.src='${product.image}'"
+            >
+          </div>
+
+          <div class="product-info">
+            <h4 class="brand">${product.brand}</h4>
+            <p class="name">${product.name}</p>
+
+            <div class="price-section">
+              <span class="price">₹${product.price}</span>
+              <span class="old-price">₹${product.old_price}</span>
+              <span class="discount">${product.discount}% OFF</span>
             </div>
 
-            <div class="product-info">
-              <h4 class="brand">${product.brand}</h4>
-              <p class="name">${product.name}</p>
-
-              <div class="price-section">
-                <span class="price">₹${product.price}</span>
-                <span class="old-price">₹${product.old_price}</span>
-                <span class="discount">${product.discount}</span>
-              </div>
-
-              <div class="rating">
-                ⭐ ${product.rating} | ${product.reviews}
-              </div>
-
-              <button class="add-btn">Add to Bag</button>
+            <div class="rating">
+              ⭐ ${product.rating} | ${product.reviews}
             </div>
-          `;
 
-          container.appendChild(card);
-        });
+            <button class="add-btn">Add to Bag</button>
+          </div>
+        `;
 
-      })
-      .catch(err => {
-        console.error("Error fetching products:", err);
+        container.appendChild(card);
       });
-  }
+
+    })
+    .catch(err => {
+      console.error("Error fetching products:", err);
+      container.innerHTML = "<h3>Failed to load products.</h3>";
+    });
+}
 
 });
