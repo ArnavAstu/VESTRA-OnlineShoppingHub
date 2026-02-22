@@ -1,0 +1,107 @@
+
+
+.faq-body {
+  background: #f1f5f9;
+  font-family: Arial, sans-serif;
+}
+
+.faq-container {
+  width: 70%;
+  margin: 70px auto;
+}
+
+.faq-item {
+  background: white;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+
+
+.payments-body {
+  background: linear-gradient(to right, #141e30, #243b55);
+  color: white;
+  font-family: "Oswald", sans-serif;
+}
+
+.payments-container {
+  width: 60%;
+  margin: 100px auto;
+  text-align: center;
+}
+
+.payments-container ul {
+  list-style: none;
+  margin-top: 30px;
+}
+
+.payments-container li {
+  padding: 10px;
+  font-size: 18px;
+}
+
+.secure {
+  margin-top: 30px;
+  font-size: 16px;
+}
+
+
+
+.care-body {
+  background-color: #fff8e1;
+  font-family: Arial, sans-serif;
+}
+
+.care-container {
+  width: 60%;
+  margin: 100px auto;
+  text-align: center;
+}
+
+.contact-box {
+  margin-top: 30px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+
+
+.coupon-body {
+  background: #ececec;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.coupon-container {
+  margin-top: 150px;
+}
+
+.coupon-input {
+  padding: 10px;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+.coupon-btn {
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.coupon-btn:hover {
+  background-color: #444;
+}
+
+.note {
+  margin-top: 15px;
+  font-size: 12px;
+  color: gray;
+}

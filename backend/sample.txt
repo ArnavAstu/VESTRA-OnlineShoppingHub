@@ -1,0 +1,39 @@
+INSERT INTO products 
+(brand, name, price, old_price, discount, rating, reviews, image, hover_image)
+VALUES
+
+('VESTRA', 'Classic Crew Neck T-Shirt', 599, 1199, '50% OFF', 4.2, '1.1k',
+'./pics/tshirt1.jpg', './pics/tshirt1-hover.jpg'),
+
+('VESTRA', 'Urban Graphic Printed Tee', 699, 1399, '50% OFF', 4.4, '980',
+'./pics/tshirt2.jpg', './pics/tshirt2-hover.jpg'),
+
+('VESTRA', 'Slim Fit Solid Cotton T-Shirt', 549, 1099, '50% OFF', 4.1, '870',
+'./pics/tshirt3.jpg', './pics/tshirt3-hover.jpg'),
+
+('VESTRA', 'Street Style Oversized Tee', 799, 1599, '50% OFF', 4.5, '1.4k',
+'./pics/tshirt4.jpg', './pics/tshirt4-hover.jpg'),
+
+('VESTRA', 'Minimal Logo Premium T-Shirt', 899, 1799, '50% OFF', 4.6, '1.8k',
+'./pics/tshirt5.jpg', './pics/tshirt5-hover.jpg'),
+
+('VESTRA', 'Athletic Performance T-Shirt', 749, 1499, '50% OFF', 4.3, '1.0k',
+'./pics/tshirt6.jpg', './pics/tshirt6-hover.jpg'),
+
+('VESTRA', 'Casual Everyday Cotton Tee', 499, 999, '50% OFF', 4.0, '760',
+'./pics/tshirt7.jpg', './pics/tshirt7-hover.jpg'),
+
+('VESTRA', 'Contrast Collar Polo T-Shirt', 999, 1999, '50% OFF', 4.7, '2.1k',
+'./pics/tshirt8.jpg', './pics/tshirt8-hover.jpg'),
+
+('VESTRA', 'Vintage Washed Casual Tee', 849, 1699, '50% OFF', 4.4, '1.5k',
+'./pics/tshirt9.jpg', './pics/tshirt9-hover.jpg'),
+
+('VESTRA', 'Summer Breeze Light Fit T-Shirt', 649, 1299, '50% OFF', 4.2, '920',
+'./pics/tshirt10.jpg', './pics/tshirt10-hover.jpg');
+
+
+
+
+jeans1,jeans2,jeans3,jeans4,jeans5,jeans6,jeans7,jeans8,pant1,pant2,shirt1,shirt2,sweatshirt1,tshirt1,tshirt2,tshirt3,tshirt4,tshirt5,
+tshirt6
