@@ -154,7 +154,7 @@
 <body>
   <div class="header">
     <div class="imag">
-      <img src="./logo/input-onlinepngtools.png" class="im">
+      <a href="./index.html"><img src="./logo/input-onlinepngtools.png" class="im"></a>
     </div>
 
     <div class="nav-links">
@@ -168,23 +168,31 @@
     </div>
 
     <div class="search">
-      <input type="text" class="ss" placeholder="Search for products, brands and more">
+      <input type="text" class="ss" placeholder=" 🔍     Search for products, brands and more">
     </div>
 
     <div class="bag" id="bg">
       <div class="action">
-        <a href="./profile.html"><i class="fa-regular fa-user"></i>
-        <span>Profile</span></a>
+        <a href="./profile.html">
+          <i class="fa-regular fa-user"></i>
+          <span>Profile</span>
+        </a>
       </div>
 
       <div class="action">
-        <a href="./wishlist.html"><i class="fa-regular fa-heart"></i>
-        <span>Wishlist</span></a>
+        <a href="./wishlist.html">
+          <i class="fa-regular fa-heart"></i>
+          <span>Wishlist</span>
+          <span class="count-badge" id="wishlist-count">0</span>
+        </a>
       </div>
 
       <div class="action">
-        <a href="bag.html"><i class="fa-solid fa-bag-shopping"></i>
-        <span>Bag</span></a>
+        <a href="bag.html">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span>Bag</span>
+          <span class="count-badge" id="bag-count">0</span>
+        </a>
       </div>
     </div>
   </div>
@@ -293,6 +301,6 @@
     </div>
   </div>
 
-  <script src="idex.js"></script>
+  <script src="cart.js"></script>
 </body>
 </html>

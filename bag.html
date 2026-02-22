@@ -24,7 +24,7 @@
     </div>
 
     <div class="nav-links">
-    <nav class="navi">
+    <nav>
     <a href="./men.html">MEN</a>
     <a href="./women.html">WOMEN</a>
     <a href="./kids.html">KIDS</a>
@@ -37,36 +37,36 @@
       <input type="text" class="ss" placeholder=" 🔍     Search for products, brands and more">
     </div>
 
-    <div class="bag" id="bg">
+    <div class="bag">
       <div class="action">
-    <a href="./profile.html"><i class="fa-regular fa-user"></i>
-    <span>Profile</span></a>
-  </div>
+        <a href="./profile.html"><i class="fa-regular fa-user"></i>
+        <span>Profile</span></a>
+      </div>
 
-  <div class="action">
-    <a href="./wishlist.html">
-      <i class="fa-regular fa-heart"></i>
-      <span>Wishlist</span>
-      <span class="count-badge" id="wishlist-count">0</span>
-    </a>
-  </div>
+      <div class="action">
+        <a href="./wishlist.html">
+          <i class="fa-regular fa-heart"></i>
+          <span>Wishlist</span>
+          <span class="count-badge" id="wishlist-count">0</span>
+        </a>
+      </div>
 
-  <div class="action">
-    <a href="bag.html">
-      <i class="fa-solid fa-bag-shopping"></i>
-      <span>Bag</span>
-      <span class="count-badge" id="bag-count">0</span>
-    </a>
-  </div>
+      <div class="action">
+        <a href="bag.html">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span>Bag</span>
+          <span class="count-badge" id="bag-count">0</span>
+        </a>
+      </div>
     </div>
   
   </div>
 
   <div class="bag-container">
     <div class="bag-items">
-      <h1>My Bag (<span id="bag-item-count">0</span> items)</h1>
+      <h1>My Bag (<span id="bag-count-display">0</span> items)</h1>
       <div id="bag-items">
-        <!-- Bag items will be rendered here -->
+        <!-- Bag items will be rendered by JavaScript -->
       </div>
     </div>
 
@@ -74,19 +74,23 @@
       <div class="summary-card">
         <h3>Price Details</h3>
         <div class="summary-row">
-          <span>Bag Total</span>
-          <span id="total-amount">₹0</span>
+          <span>Total MRP</span>
+          <span id="total-mrp">₹0</span>
         </div>
         <div class="summary-row">
-          <span>Shipping</span>
-          <span>FREE</span>
+          <span>Discount on MRP</span>
+          <span style="color: #28a745;">-₹0</span>
+        </div>
+        <div class="summary-row">
+          <span>Shipping Charges</span>
+          <span>Free</span>
         </div>
         <div class="summary-row total">
-          <span>Total</span>
-          <span id="total-amount-final">₹0</span>
+          <span>Total Amount</span>
+          <span id="total-amount">₹0</span>
         </div>
         <button class="btn-checkout" onclick="checkout()">
-          PROCEED TO CHECKOUT
+          <i class="fa-solid fa-lock"></i> Secure Checkout
         </button>
       </div>
     </div>
@@ -124,8 +128,6 @@
       <h3>Follow us</h3><br/>
       <nav>
         <a href="#">Instagram</a><br/>
-        <a href="#">Instagram</a><br/>
-        <a href="#">Twitter</a><br/>
         <a href="#">Twitter</a><br/>
       </nav>
     </div>
@@ -135,13 +137,27 @@
 
 <script src="cart.js"></script>
 <script>
+  // Override renderBagPage to update the summary
+  const originalRenderBagPage = renderBagPage;
+  renderBagPage = function() {
+    originalRenderBagPage();
+    
+    const bag = getBag();
+    const total = getBagTotal();
+    
+    document.getElementById('bag-count-display').textContent = bag.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById('total-mrp').textContent = '₹' + total;
+    document.getElementById('total-amount').textContent = '₹' + total;
+  };
+
+  // Checkout function
   function checkout() {
     const bag = getBag();
     if (bag.length === 0) {
       showNotification('Your bag is empty!');
       return;
     }
-    showNotification('Proceeding to checkout!');
+    showNotification('Proceeding to checkout...');
   }
 </script>
 </body>

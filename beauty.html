@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beauty - VESTRA</title>
+  <title>Beauty Products - VESTRA</title>
   <link rel="icon" type="image/x-icon" href="./logo/tb.ico">
   <link rel="stylesheet" href="style.css">
 
@@ -63,8 +63,8 @@
   </div>
 
   <div class="category-header">
-    <h1>Beauty</h1>
-    <p>Discover our beauty and skincare products</p>
+    <h1>Beauty Collection</h1>
+    <p>Enhance your beauty with our premium products</p>
   </div>
 
   <div class="product-grid" id="beauty-products">
@@ -103,8 +103,6 @@
       <h3>Follow us</h3><br/>
       <nav>
         <a href="#">Instagram</a><br/>
-        <a href="#">Instagram</a><br/>
-        <a href="#">Twitter</a><br/>
         <a href="#">Twitter</a><br/>
       </nav>
     </div>
@@ -114,20 +112,22 @@
 
 <script src="cart.js"></script>
 <script>
-  // Sample products for Beauty
+  // Sample products for Beauty with random discounts
   window.beautyProducts = [
     {
       id: 'beauty-1',
-      name: 'Face Cream',
+      name: 'Lipstick Set',
       brand: 'Vestra Beauty',
       price: 599,
+      discount: 30,
       image: './pics/panel/beauty.png'
     },
     {
       id: 'beauty-2',
-      name: 'Lipstick Set',
-      brand: 'Vestra Beauty',
-      price: 799,
+      name: 'Face Cream',
+      brand: 'Vestra Skincare',
+      price: 899,
+      discount: 25,
       image: './pics/panel/beauty.png'
     },
     {
@@ -135,13 +135,31 @@
       name: 'Perfume',
       brand: 'Vestra Fragrance',
       price: 1499,
+      discount: 40,
       image: './pics/panel/beauty.png'
     },
     {
       id: 'beauty-4',
-      name: 'Skincare Kit',
-      brand: 'Vestra Beauty',
-      price: 1299,
+      name: 'Makeup Kit',
+      brand: 'Vestra Cosmetics',
+      price: 2199,
+      discount: 35,
+      image: './pics/panel/beauty.png'
+    },
+    {
+      id: 'beauty-5',
+      name: 'Hair Serum',
+      brand: 'Vestra Haircare',
+      price: 449,
+      discount: 20,
+      image: './pics/panel/beauty.png'
+    },
+    {
+      id: 'beauty-6',
+      name: 'Nail Polish Set',
+      brand: 'Vestra Nails',
+      price: 349,
+      discount: 45,
       image: './pics/panel/beauty.png'
     }
   ];

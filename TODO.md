@@ -11,14 +11,37 @@
 - [x] 8. Add sample products to kids.html with Add to Wishlist/Bag buttons
 - [x] 9. Add sample products to footwear.html with Add to Wishlist/Bag buttons
 - [x] 10. Add sample products to beauty.html with Add to Wishlist/Bag buttons
-- [x] 11. Update all category page headers with proper wishlist/bag navigation
+- [x] 11. Update profile.html with proper wishlist/bag navigation
 
 ## Implementation Details:
-- Use localStorage for data persistence
+- Uses localStorage for data persistence
 - Wishlist: Heart icon toggle, store product objects
 - Bag: Add to cart, quantity +/- controls, remove item
 - Badge counters on header icons
+- Discount display on product cards
 - Responsive product grid layout
 
-## Changes Pushed to GitHub:
-- Pull Request: https://github.com/ArnavAstu/vestra/pull/1
+## Features Implemented:
+1. **Wishlist Feature:**
+   - Add/remove products to wishlist with heart icon
+   - View all wishlisted items on wishlist.html
+   - Move items from wishlist to bag
+   - Wishlist count badge in header
+
+2. **Bag Feature:**
+   - Add products to bag
+   - Quantity controls (+/-)
+   - Remove items from bag
+   - Price summary with total
+   - Bag count badge in header
+   - Checkout button
+
+3. **Product Display:**
+   - Grid layout with product cards
+   - Discount badges (random 10-50% off)
+   - Original and discounted prices
+   - Add to Bag and Wishlist buttons
+
+4. **Data Persistence:**
+   - All data saved in localStorage
+   - Works without backend

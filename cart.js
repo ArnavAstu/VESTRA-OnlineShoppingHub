@@ -14,7 +14,6 @@ function getWishlist() {
 function saveWishlist(wishlist) {
   localStorage.setItem(WISHLIST_KEY, JSON.stringify(wishlist));
   updateWishlistCount();
-  renderAllProductGrids();
 }
 
 // Get bag from localStorage
@@ -37,7 +36,7 @@ function addToWishlist(product) {
   if (!exists) {
     wishlist.push(product);
     saveWishlist(wishlist);
-    showNotification(`${product.name} added to Wishlist`);
+    showNotification('Added to Wishlist!');
     return true;
   } else {
     showNotification('Already in Wishlist!');
@@ -74,7 +73,7 @@ function addToBag(product, size = null, color = null) {
       color: color,
       quantity: 1
     });
-    showNotification(`${product.name} added to Bag`);
+    showNotification('Added to Bag!');
   }
   
   saveBag(bag);
@@ -142,28 +141,23 @@ function getBagTotal() {
   return bag.reduce((total, item) => total + (item.price * item.quantity), 0);
 }
 
-// Show notification with item name
+// Show notification
 function showNotification(message) {
-  const existing = document.querySelector('.vestra-notification');
-  if (existing) existing.remove();
-  
   const notification = document.createElement('div');
   notification.className = 'vestra-notification';
-  notification.innerHTML = '<i class="fa-solid fa-check-circle"></i> ' + message;
+  notification.textContent = message;
   document.body.appendChild(notification);
   
-  requestAnimationFrame(function() {
+  setTimeout(() => {
     notification.classList.add('show');
-  });
+  }, 10);
   
-  setTimeout(function() {
+  setTimeout(() => {
     notification.classList.remove('show');
-    setTimeout(function() {
-      if (notification.parentNode) {
-        document.body.removeChild(notification);
-      }
+    setTimeout(() => {
+      document.body.removeChild(notification);
     }, 300);
-  }, 2500);
+  }, 2000);
 }
 
 // Move item from wishlist to bag
@@ -178,6 +172,12 @@ function moveToBag(productId) {
   }
 }
 
+// Calculate discounted price
+function getDiscountedPrice(price, discount) {
+  if (!discount || discount === 0) return price;
+  return Math.round(price - (price * discount / 100));
+}
+
 // Render wishlist page
 function renderWishlistPage() {
   const container = document.getElementById('wishlist-items');
@@ -186,35 +186,43 @@ function renderWishlistPage() {
   const wishlist = getWishlist();
   
   if (wishlist.length === 0) {
-    container.innerHTML = 
-      '<div class="empty-state">' +
-        '<i class="fa-regular fa-heart"></i>' +
-        '<h2>Your Wishlist is Empty</h2>' +
-        '<p>Save your favorite items here!</p>' +
-        '<a href="index.html" class="btn-primary">Start Shopping</a>' +
-      '</div>';
+    container.innerHTML = `
+      <div class="empty-state">
+        <i class="fa-regular fa-heart"></i>
+        <h2>Your Wishlist is Empty</h2>
+        <p>Save your favorite items here!</p>
+        <a href="index.html" class="btn-primary">Start Shopping</a>
+      </div>
+    `;
     return;
   }
   
-  container.innerHTML = wishlist.map(function(product) {
-    return '<div class="product-card">' +
-      '<div class="product-image">' +
-        '<img src="' + product.image + '" alt="' + product.name + '">' +
-        '<button class="remove-wishlist" onclick="removeFromWishlist(\'' + product.id + '\')">' +
-          '<i class="fa-solid fa-xmark"></i>' +
-        '</button>' +
-      '</div>' +
-      '<div class="product-info">' +
-        '<h3>' + product.name + '</h3>' +
-        '<p class="brand">' + product.brand + '</p>' +
-        '<p class="price">₹' + product.price + '</p>' +
-        '<div class="product-actions">' +
-          '<button class="btn-add-bag" onclick="moveToBag(\'' + product.id + '\')">' +
-            '<i class="fa-solid fa-bag-shopping"></i> Move to Bag' +
-          '</button>' +
-        '</div>' +
-      '</div>' +
-    '</div>';
+  container.innerHTML = wishlist.map(product => {
+    const discountedPrice = getDiscountedPrice(product.price, product.discount);
+    return `
+      <div class="product-card">
+        <div class="product-image">
+          <img src="${product.image}" alt="${product.name}">
+          ${product.discount ? `<span class="discount-badge">${product.discount}% OFF</span>` : ''}
+          <button class="remove-wishlist" onclick="removeFromWishlist('${product.id}')">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="product-info">
+          <h3>${product.name}</h3>
+          <p class="brand">${product.brand}</p>
+          <p class="price">
+            <span class="discounted-price">₹${discountedPrice}</span>
+            ${product.discount ? `<span class="original-price">₹${product.price}</span>` : ''}
+          </p>
+          <div class="product-actions">
+            <button class="btn-add-bag" onclick="moveToBag('${product.id}')">
+              <i class="fa-solid fa-bag-shopping"></i> Move to Bag
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
   }).join('');
   
   updateWishlistCount();
@@ -230,124 +238,94 @@ function renderBagPage() {
   const bag = getBag();
   
   if (bag.length === 0) {
-    container.innerHTML = 
-      '<div class="empty-state">' +
-        '<i class="fa-solid fa-bag-shopping"></i>' +
-        '<h2>Your Bag is Empty</h2>' +
-        '<p>Add items to your bag to get started!</p>' +
-        '<a href="index.html" class="btn-primary">Start Shopping</a>' +
-      '</div>';
+    container.innerHTML = `
+      <div class="empty-state">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <h2>Your Bag is Empty</h2>
+        <p>Add items to your bag to get started!</p>
+        <a href="index.html" class="btn-primary">Start Shopping</a>
+      </div>
+    `;
     if (totalContainer) totalContainer.style.display = 'none';
     return;
   }
   
-  container.innerHTML = bag.map(function(item) {
-    return '<div class="bag-item">' +
-      '<div class="bag-item-image">' +
-        '<img src="' + item.image + '" alt="' + item.name + '">' +
-      '</div>' +
-      '<div class="bag-item-details">' +
-        '<h3>' + item.name + '</h3>' +
-        '<p class="brand">' + item.brand + '</p>' +
-        (item.size ? '<p class="size">Size: ' + item.size + '</p>' : '') +
-        (item.color ? '<p class="color">Color: ' + item.color + '</p>' : '') +
-        '<p class="price">₹' + item.price + '</p>' +
-      '</div>' +
-      '<div class="bag-item-actions">' +
-        '<div class="quantity-control">' +
-          '<button onclick="updateQuantity(\'' + item.id + '\', \'' + item.size + '\', \'' + item.color + '\', -1)">-</button>' +
-          '<span>' + item.quantity + '</span>' +
-          '<button onclick="updateQuantity(\'' + item.id + '\', \'' + item.size + '\', \'' + item.color + '\', 1)">+</button>' +
-        '</div>' +
-        '<button class="btn-remove" onclick="removeFromBag(\'' + item.id + '\', \'' + item.size + '\', \'' + item.color + '\')">' +
-          '<i class="fa-solid fa-trash"></i> Remove' +
-        '</button>' +
-      '</div>' +
-      '<div class="bag-item-total">' +
-        '₹' + (item.price * item.quantity) +
-      '</div>' +
-    '</div>';
+  if (totalContainer) totalContainer.style.display = 'block';
+  
+  container.innerHTML = bag.map((item) => {
+    const discountedPrice = getDiscountedPrice(item.price, item.discount);
+    return `
+      <div class="bag-item">
+        <div class="bag-item-image">
+          <img src="${item.image}" alt="${item.name}">
+        </div>
+        <div class="bag-item-details">
+          <h3>${item.name}</h3>
+          <p class="brand">${item.brand}</p>
+          ${item.size ? `<p class="size">Size: ${item.size}</p>` : ''}
+          ${item.color ? `<p class="color">Color: ${item.color}</p>` : ''}
+          <p class="price">
+            <span class="discounted-price">₹${discountedPrice}</span>
+            ${item.discount ? `<span class="original-price">₹${item.price}</span>` : ''}
+          </p>
+        </div>
+        <div class="bag-item-actions">
+          <div class="quantity-control">
+            <button onclick="updateQuantity('${item.id}', '${item.size}', '${item.color}', -1)">-</button>
+            <span>${item.quantity}</span>
+            <button onclick="updateQuantity('${item.id}', '${item.size}', '${item.color}', 1)">+</button>
+          </div>
+          <button class="btn-remove" onclick="removeFromBag('${item.id}', '${item.size}', '${item.color}')">
+            <i class="fa-solid fa-trash"></i> Remove
+          </button>
+        </div>
+        <div class="bag-item-total">
+          ₹${discountedPrice * item.quantity}
+        </div>
+      </div>
+    `;
   }).join('');
   
   const total = getBagTotal();
   if (totalContainer) {
-    totalContainer.style.display = 'block';
-    document.getElementById('total-amount').textContent = '₹' + total;
+    const totalAmountEl = document.getElementById('total-amount');
+    if (totalAmountEl) {
+      totalAmountEl.textContent = `₹${total}`;
+    }
   }
   
   updateBagCount();
 }
 
-// Create product card HTML
+// Create product card HTML with discount support
 function createProductCard(product) {
   const inWishlist = isInWishlist(product.id);
-  const heartClass = inWishlist ? 'fa-solid' : 'fa-regular';
-  const activeClass = inWishlist ? 'active' : '';
+  const discountedPrice = getDiscountedPrice(product.price, product.discount);
   
-  // Store product in a global object with unique key
-  var productKey = 'prod_' + product.id;
-  window[productKey] = product;
-  
-  return '<div class="product-card">' +
-    '<div class="product-image">' +
-      '<img src="' + product.image + '" alt="' + product.name + '">' +
-      '<button class="btn-wishlist ' + activeClass + '" onclick="handleWishlistClick(\'' + productKey + '\')">' +
-        '<i class="' + heartClass + ' fa-heart"></i>' +
-      '</button>' +
-    '</div>' +
-    '<div class="product-info">' +
-      '<h3>' + product.name + '</h3>' +
-      '<p class="brand">' + product.brand + '</p>' +
-      '<p class="price">₹' + product.price + '</p>' +
-      '<button class="btn-add-bag" onclick="handleAddToBag(\'' + productKey + '\')">' +
-        '<i class="fa-solid fa-bag-shopping"></i> Add to Bag' +
-      '</button>' +
-    '</div>' +
-  '</div>';
-}
-
-// Handle wishlist click
-function handleWishlistClick(productKey) {
-  var product = window[productKey];
-  var inWishlist = isInWishlist(product.id);
-  
-  if (inWishlist) {
-    removeFromWishlist(product.id);
-  } else {
-    addToWishlist(product);
-  }
-  
-  renderAllProductGrids();
-}
-
-// Handle add to bag click
-function handleAddToBag(productKey) {
-  var product = window[productKey];
-  addToBag(product);
-}
-
-// Render all product grids on the page
-function renderAllProductGrids() {
-  var gridConfigs = [
-    { gridId: 'men-products', productsVar: 'menProducts' },
-    { gridId: 'women-products', productsVar: 'womenProducts' },
-    { gridId: 'kids-products', productsVar: 'kidsProducts' },
-    { gridId: 'footwear-products', productsVar: 'footwearProducts' },
-    { gridId: 'beauty-products', productsVar: 'beautyProducts' },
-    { gridId: 'featured-products', productsVar: 'featuredProducts' }
-  ];
-  
-  gridConfigs.forEach(function(config) {
-    var container = document.getElementById(config.gridId);
-    if (container && window[config.productsVar]) {
-      var products = window[config.productsVar];
-      if (products) {
-        container.innerHTML = products.map(function(product) {
-          return createProductCard(product);
-        }).join('');
-      }
-    }
-  });
+  return `
+    <div class="product-card">
+      <div class="product-image">
+        <img src="${product.image}" alt="${product.name}">
+        ${product.discount ? `<span class="discount-badge">${product.discount}% OFF</span>` : ''}
+        <button class="btn-wishlist ${inWishlist ? 'active' : ''}" onclick="toggleWishlist(${JSON.stringify(product).replace(/"/g, '"')})">
+          <i class="${inWishlist ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+        </button>
+      </div>
+      <div class="product-info">
+        <h3>${product.name}</h3>
+        <p class="brand">${product.brand}</p>
+        <p class="price">
+          <span class="discounted-price">₹${discountedPrice}</span>
+          ${product.discount ? `<span class="original-price">₹${product.price}</span>` : ''}
+        </p>
+        <div class="product-actions">
+          <button class="btn-add-bag" onclick="addToBagFromCard(${JSON.stringify(product).replace(/"/g, '"')})">
+            <i class="fa-solid fa-bag-shopping"></i> Add to Bag
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
 }
 
 // Toggle wishlist from product card
@@ -357,7 +335,6 @@ function toggleWishlist(product) {
   } else {
     addToWishlist(product);
   }
-  renderAllProductGrids();
 }
 
 // Add to bag from product card
@@ -366,36 +343,17 @@ function addToBagFromCard(product) {
 }
 
 // Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   updateWishlistCount();
   updateBagCount();
   
+  // Render wishlist page if on wishlist page
   if (document.getElementById('wishlist-items')) {
     renderWishlistPage();
   }
   
+  // Render bag page if on bag page
   if (document.getElementById('bag-items')) {
     renderBagPage();
   }
-  
-  window.addEventListener('storage', function(e) {
-    if (e.key === WISHLIST_KEY || e.key === BAG_KEY) {
-      updateWishlistCount();
-      updateBagCount();
-      renderAllProductGrids();
-      
-      if (document.getElementById('wishlist-items')) {
-        renderWishlistPage();
-      }
-      if (document.getElementById('bag-items')) {
-        renderBagPage();
-      }
-    }
-  });
 });
-
-// Poll every 500ms for immediate updates
-setInterval(function() {
-  updateWishlistCount();
-  updateBagCount();
-}, 500);
