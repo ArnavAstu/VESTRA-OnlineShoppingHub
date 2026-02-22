@@ -42,62 +42,84 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
- const container = document.getElementById("productContainer");
+  const container = document.getElementById("productContainer");
 
-if (container && typeof pageCategory !== "undefined") {
+  if (container && typeof pageCategory !== "undefined") {
 
-  fetch(`http://localhost:5000/${pageCategory}-products`)
-    .then(res => res.json())
-    .then(products => {
+    let sortValue = "";
 
-      container.innerHTML = "";
+    const sortSelect = document.getElementById("sortSelect");
 
-      if (products.length === 0) {
-        container.innerHTML = "<h3>No products found.</h3>";
-        return;
+    if (sortSelect) {
+      sortSelect.addEventListener("change", () => {
+        sortValue = sortSelect.value;
+        loadProducts();
+      });
+    }
+
+    function loadProducts() {
+
+      let url = `http://localhost:5000/products?category=${pageCategory}`;
+
+      if (sortValue) {
+        url += `&sort=${sortValue}`;
       }
 
-      products.forEach(product => {
+      fetch(url)
+        .then(res => res.json())
+        .then(products => {
 
-        const card = document.createElement("div");
-        card.classList.add("product-card");
+          container.innerHTML = "";
 
-        card.innerHTML = `
-          <div class="image-wrapper">
-            <img 
-              src="${product.image}" 
-              alt="${product.name}"
-              onmouseover="this.src='${product.hover_image}'"
-              onmouseout="this.src='${product.image}'"
-            >
-          </div>
+          if (products.length === 0) {
+            container.innerHTML = "<h3>No products found.</h3>";
+            return;
+          }
 
-          <div class="product-info">
-            <h4 class="brand">${product.brand}</h4>
-            <p class="name">${product.name}</p>
+          products.forEach(product => {
 
-            <div class="price-section">
-              <span class="price">₹${product.price}</span>
-              <span class="old-price">₹${product.old_price}</span>
-              <span class="discount">${product.discount}% OFF</span>
-            </div>
+            const card = document.createElement("div");
+            card.classList.add("product-card");
 
-            <div class="rating">
-              ⭐ ${product.rating} | ${product.reviews}
-            </div>
+            card.innerHTML = `
+              <div class="image-wrapper">
+                <img 
+                  src="${product.image}" 
+                  alt="${product.name}"
+                  onmouseover="this.src='${product.hover_image}'"
+                  onmouseout="this.src='${product.image}'"
+                >
+              </div>
 
-            <button class="add-btn">Add to Bag</button>
-          </div>
-        `;
+              <div class="product-info">
+                <h4 class="brand">${product.brand}</h4>
+                <p class="name">${product.name}</p>
 
-        container.appendChild(card);
-      });
+                <div class="price-section">
+                  <span class="price">₹${product.price}</span>
+                  <span class="old-price">₹${product.old_price}</span>
+                  <span class="discount">${product.discount}% OFF</span>
+                </div>
 
-    })
-    .catch(err => {
-      console.error("Error fetching products:", err);
-      container.innerHTML = "<h3>Failed to load products.</h3>";
-    });
-}
+                <div class="rating">
+                  ⭐ ${product.rating} | ${product.reviews}
+                </div>
+
+                <button class="add-btn">Add to Bag</button>
+              </div>
+            `;
+
+            container.appendChild(card);
+          });
+
+        })
+        .catch(err => {
+          console.error("Error fetching products:", err);
+          container.innerHTML = "<h3>Failed to load products.</h3>";
+        });
+    }
+
+    loadProducts();
+  }
 
 });

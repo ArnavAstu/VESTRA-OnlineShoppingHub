@@ -315,6 +315,39 @@ width: 1515px;
   }
 }
 
+.sort-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin: 20px 40px;
+  font-family: 'Oswald', sans-serif;
+}
 
+.sort-container label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.sort-container select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.sort-container select:hover {
+  border-color: #000;
+}
+
+.sort-container select:focus {
+  outline: none;
+  border-color: #ff3f6c;
+  box-shadow: 0 0 5px rgba(255, 63, 108, 0.3);
+}
 
 
