@@ -144,7 +144,6 @@ function getBagTotal() {
 
 // Show notification with item name
 function showNotification(message) {
-  // Remove any existing notifications
   const existing = document.querySelector('.vestra-notification');
   if (existing) existing.remove();
   
@@ -153,12 +152,10 @@ function showNotification(message) {
   notification.innerHTML = `<i class="fa-solid fa-check-circle"></i> ${message}`;
   document.body.appendChild(notification);
   
-  // Trigger animation
   requestAnimationFrame(() => {
     notification.classList.add('show');
   });
   
-  // Remove after 2.5 seconds
   setTimeout(() => {
     notification.classList.remove('show');
     setTimeout(() => {
@@ -319,19 +316,24 @@ function handleWishlistClick(product) {
     addToWishlist(product);
   }
   
-  // Re-render all product grids to update heart icons
   renderAllProductGrids();
 }
 
 // Render all product grids on the page
 function renderAllProductGrids() {
-  // Find all product grid containers and re-render them
-  const gridIds = ['men-products', 'women-products', 'kids-products', 'footwear-products', 'beauty-products'];
+  const gridConfigs = [
+    { gridId: 'men-products', productsVar: 'menProducts' },
+    { gridId: 'women-products', productsVar: 'womenProducts' },
+    { gridId: 'kids-products', productsVar: 'kidsProducts' },
+    { gridId: 'footwear-products', productsVar: 'footwearProducts' },
+    { gridId: 'beauty-products', productsVar: 'beautyProducts' },
+    { gridId: 'featured-products', productsVar: 'featuredProducts' }
+  ];
   
-  gridIds.forEach(gridId => {
-    const container = document.getElementById(gridId);
-    if (container && window[gridId.replace('-', 'Products')]) {
-      const products = window[gridId.replace('-products', 'Products')];
+  gridConfigs.forEach(config => {
+    const container = document.getElementById(config.gridId);
+    if (container && window[config.productsVar]) {
+      const products = window[config.productsVar];
       if (products) {
         container.innerHTML = products.map(product => createProductCard(product)).join('');
       }
@@ -359,24 +361,20 @@ document.addEventListener('DOMContentLoaded', () => {
   updateWishlistCount();
   updateBagCount();
   
-  // Render wishlist page if on wishlist page
   if (document.getElementById('wishlist-items')) {
     renderWishlistPage();
   }
   
-  // Render bag page if on bag page
   if (document.getElementById('bag-items')) {
     renderBagPage();
   }
   
-  // Listen for storage changes (cross-tab real-time updates)
   window.addEventListener('storage', (e) => {
     if (e.key === WISHLIST_KEY || e.key === BAG_KEY) {
       updateWishlistCount();
       updateBagCount();
       renderAllProductGrids();
       
-      // Re-render pages if on wishlist or bag page
       if (document.getElementById('wishlist-items')) {
         renderWishlistPage();
       }
@@ -387,7 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Poll every 500ms for immediate updates on same page
+// Poll every 500ms for immediate updates
 setInterval(() => {
   updateWishlistCount();
   updateBagCount();

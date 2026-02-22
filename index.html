@@ -102,6 +102,15 @@
 </div>
 <br />
 
+<!-- Featured Products with Wishlist -->
+<div class="featured-products" style="padding: 40px 20px;">
+  <h2 class="section-title" style="text-align: center; color: #282c3f; margin-bottom: 30px; font-size: 1.8rem;">Featured Products</h2>
+  <div class="product-grid" id="featured-products">
+    <!-- Products will be rendered by JavaScript -->
+  </div>
+</div>
+<br />
+
 <div class="fh">
   <h2>VESTRA CARES</h2>
   <img src="./temp/finally.PNG">
@@ -152,5 +161,43 @@
 
 <script src="idex.js"></script>
 <script src="cart.js"></script>
+<script>
+  // Featured products for homepage
+  window.featuredProducts = [
+    {
+      id: 'feat-1',
+      name: 'Classic Cotton Shirt',
+      brand: 'Vestra Basics',
+      price: 899,
+      image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_13_22 PM.png'
+    },
+    {
+      id: 'feat-2',
+      name: 'Floral Summer Dress',
+      brand: 'Vestra Style',
+      price: 1499,
+      image: './pics/panel/ChatGPT Image Feb 8, 2026, 07_18_33 PM.png'
+    },
+    {
+      id: 'feat-3',
+      name: 'Kids Cotton Frock',
+      brand: 'Vestra Kids',
+      price: 799,
+      image: './pics/kids pics/ChatGPT Image Feb 8, 2026, 11_01_06 PM.png'
+    },
+    {
+      id: 'feat-4',
+      name: 'Running Shoes',
+      brand: 'Vestra Sport',
+      price: 2499,
+      image: './pics/panel/footwear.png'
+    }
+  ];
+
+  // Render featured products
+  if (document.getElementById('featured-products')) {
+    document.getElementById('featured-products').innerHTML = featuredProducts.map(product => createProductCard(product)).join('');
+  }
+</script>
 </body>
 </html>
