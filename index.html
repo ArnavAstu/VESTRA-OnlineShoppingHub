@@ -37,20 +37,26 @@
       <input type="text" class="ss" placeholder=" 🔍     Search for products, brands and more">
     </div>
 
-    <div class="bag" id="bg">
+<div class="bag" id="bg">
       <div class="action">
     <a href="./profile.html"><i class="fa-regular fa-user"></i>
-    <span>Profile</span></button></a>
+    <span>Profile</span></a>
   </div>
 
   <div class="action">
-    <a href="./wishlist.html"><i class="fa-regular fa-heart"></i>
-    <span>Wishlist</span></a>
+    <a href="./wishlist.html">
+      <i class="fa-regular fa-heart"></i>
+      <span>Wishlist</span>
+      <span class="count-badge" id="wishlist-count">0</span>
+    </a>
   </div>
 
   <div class="action">
-    <a href="bag.html"><i class="fa-solid fa-bag-shopping"></i>
-    <span>Bag</span></button></a>
+    <a href="bag.html">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <span>Bag</span>
+      <span class="count-badge" id="bag-count">0</span>
+    </a>
   </div>
     </div>
   
@@ -145,5 +151,6 @@
 </div>
 
 <script src="idex.js"></script>
+<script src="cart.js"></script>
 </body>
 </html>

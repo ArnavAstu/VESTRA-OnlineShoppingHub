@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Shopping for Women, Men, Kids Fashion & Lifestyle - VESTRA</title>
+  <title>Women's Fashion - VESTRA</title>
   <link rel="icon" type="image/x-icon" href="./logo/tb.ico">
   <link rel="stylesheet" href="style.css">
 
@@ -20,7 +20,7 @@
 <body>
   <div class="header">
     <div class="imag">
-      <img src="./logo/input-onlinepngtools.png" class="im">
+      <a href="./index.html"><img src="./logo/input-onlinepngtools.png" class="im"></a>
     </div>
 
     <div class="nav-links">
@@ -39,26 +39,143 @@
 
     <div class="bag">
       <div class="action">
-    <i class="fa-regular fa-user"></i>
-    <span>Profile</span>
-  </div>
+        <a href="./profile.html"><i class="fa-regular fa-user"></i>
+        <span>Profile</span></a>
+      </div>
 
-  <div class="action">
-    <i class="fa-regular fa-heart"></i>
-    <span>Wishlist</span>
-  </div>
+      <div class="action">
+        <a href="./wishlist.html">
+          <i class="fa-regular fa-heart"></i>
+          <span>Wishlist</span>
+          <span class="count-badge" id="wishlist-count">0</span>
+        </a>
+      </div>
 
-  <div class="action">
-    <i class="fa-solid fa-bag-shopping"></i>
-    <span>Bag</span>
-  </div>
+      <div class="action">
+        <a href="bag.html">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span>Bag</span>
+          <span class="count-badge" id="bag-count">0</span>
+        </a>
+      </div>
     </div>
   
   </div>
 
-  
+  <div class="category-header">
+    <h1>Women's Fashion</h1>
+    <p>Discover the latest trends in women's clothing</p>
+  </div>
 
+  <div class="product-grid" id="women-products">
+    <!-- Products will be rendered by JavaScript -->
+  </div>
 
+  <div class="nt">
+  <div class="nxt">
+    <div>
+      <h3>About us</h3><br/>
+      <nav>
+        <a href="#">Who are we ?</a><br/>
+        <a href="#">Terms and Conditions</a>
+      </nav>
+    </div>
+    <div>
+      <h3>Help</h3><br/>
+      <nav>
+        <a href="#">Frequently asked questions</a><br/>
+        <a href="#">Payments</a><br/>
+        <a href="#">Customer Care</a><br/>
+        <a href="#">How do I redeem my coupon code ?</a>
+      </nav>
+    </div>
+    <div>
+      <h3>Shop By</h3><br/>
+      <nav>
+        <a href="#">Men</a><br/>
+        <a href="#">Women</a><br/>
+        <a href="#">Kids</a><br/>
+        <a href="#">Footwear</a><br/>
+        <a href="#">Beauty</a>
+      </nav>
+    </div>
+    <div>
+      <h3>Follow us</h3><br/>
+      <nav>
+        <a href="#">Instagram</a><br/>
+        <a href="#">Instagram</a><br/>
+        <a href="#">Twitter</a><br/>
+        <a href="#">Twitter</a><br/>
+      </nav>
+    </div>
+  </div>
+  <img src="./temp/num.PNG">
+</div>
 
+<script src="cart.js"></script>
+<script>
+  // Sample products for Women
+  const womenProducts = [
+    {
+      id: 'women-1',
+      name: 'Floral Summer Dress',
+      brand: 'Vestra Flora',
+      price: 1299,
+      image: './pics/panel/ChatGPT Image Feb 8, 2026, 07_18_33 PM.png'
+    },
+    {
+      id: 'women-2',
+      name: 'Designer Kurti Set',
+      brand: 'Vestra Ethnic',
+      price: 1899,
+      image: './pics/panel/ChatGPT Image Feb 8, 2026, 07_19_09 PM.png'
+    },
+    {
+      id: 'women-3',
+      name: 'High-Waist Jeans',
+      brand: 'Vestra Denim',
+      price: 1499,
+      image: './pics/panel/ChatGPT Image Feb 8, 2026, 07_19_23 PM.png'
+    },
+    {
+      id: 'women-4',
+      name: 'Silk Saree',
+      brand: 'Vestra Traditional',
+      price: 2999,
+      image: './pics/panel/ChatGPT Image Feb 8, 2026, 07_19_39 PM.png'
+    },
+    {
+      id: 'women-5',
+      name: 'Casual Tops Pack',
+      brand: 'Vestra Basics',
+      price: 899,
+      image: './pics/panel/ChatGPT Image Feb 8, 2026, 07_19_53 PM.png'
+    },
+    {
+      id: 'women-6',
+      name: 'Leather Handbag',
+      brand: 'Vestra Accessories',
+      price: 2199,
+      image: './pics/panel/women.png'
+    },
+    {
+      id: 'women-7',
+      name: 'Winter Jacket',
+      brand: 'Vestra Winter',
+      price: 2499,
+      image: './pics/panel/beauty.png'
+    },
+    {
+      id: 'women-8',
+      name: 'Palazzo Pants',
+      brand: 'Vestra Comfort',
+      price: 999,
+      image: './pics/panel/footwear.png'
+    }
+  ];
+
+  // Render products
+  document.getElementById('women-products').innerHTML = womenProducts.map(product => createProductCard(product)).join('');
+</script>
 </body>
 </html>

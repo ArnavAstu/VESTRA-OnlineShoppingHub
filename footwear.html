@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Shopping for Women, Men, Kids Fashion & Lifestyle - VESTRA</title>
+  <title>Footwear - VESTRA</title>
   <link rel="icon" type="image/x-icon" href="./logo/tb.ico">
   <link rel="stylesheet" href="style.css">
 
@@ -20,7 +20,7 @@
 <body>
   <div class="header">
     <div class="imag">
-      <img src="./logo/input-onlinepngtools.png" class="im">
+      <a href="./index.html"><img src="./logo/input-onlinepngtools.png" class="im"></a>
     </div>
 
     <div class="nav-links">
@@ -39,26 +39,143 @@
 
     <div class="bag">
       <div class="action">
-    <i class="fa-regular fa-user"></i>
-    <span>Profile</span>
-  </div>
+        <a href="./profile.html"><i class="fa-regular fa-user"></i>
+        <span>Profile</span></a>
+      </div>
 
-  <div class="action">
-    <i class="fa-regular fa-heart"></i>
-    <span>Wishlist</span>
-  </div>
+      <div class="action">
+        <a href="./wishlist.html">
+          <i class="fa-regular fa-heart"></i>
+          <span>Wishlist</span>
+          <span class="count-badge" id="wishlist-count">0</span>
+        </a>
+      </div>
 
-  <div class="action">
-    <i class="fa-solid fa-bag-shopping"></i>
-    <span>Bag</span>
-  </div>
+      <div class="action">
+        <a href="bag.html">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span>Bag</span>
+          <span class="count-badge" id="bag-count">0</span>
+        </a>
+      </div>
     </div>
   
   </div>
 
-  
+  <div class="category-header">
+    <h1>Footwear</h1>
+    <p>Step out in style with our collection</p>
+  </div>
 
+  <div class="product-grid" id="footwear-products">
+    <!-- Products will be rendered by JavaScript -->
+  </div>
 
+  <div class="nt">
+  <div class="nxt">
+    <div>
+      <h3>About us</h3><br/>
+      <nav>
+        <a href="#">Who are we ?</a><br/>
+        <a href="#">Terms and Conditions</a>
+      </nav>
+    </div>
+    <div>
+      <h3>Help</h3><br/>
+      <nav>
+        <a href="#">Frequently asked questions</a><br/>
+        <a href="#">Payments</a><br/>
+        <a href="#">Customer Care</a><br/>
+        <a href="#">How do I redeem my coupon code ?</a>
+      </nav>
+    </div>
+    <div>
+      <h3>Shop By</h3><br/>
+      <nav>
+        <a href="#">Men</a><br/>
+        <a href="#">Women</a><br/>
+        <a href="#">Kids</a><br/>
+        <a href="#">Footwear</a><br/>
+        <a href="#">Beauty</a>
+      </nav>
+    </div>
+    <div>
+      <h3>Follow us</h3><br/>
+      <nav>
+        <a href="#">Instagram</a><br/>
+        <a href="#">Instagram</a><br/>
+        <a href="#">Twitter</a><br/>
+        <a href="#">Twitter</a><br/>
+      </nav>
+    </div>
+  </div>
+  <img src="./temp/num.PNG">
+</div>
 
+<script src="cart.js"></script>
+<script>
+  // Sample products for Footwear
+  const footwearProducts = [
+    {
+      id: 'foot-1',
+      name: 'Running Shoes',
+      brand: 'Vestra Sport',
+      price: 2499,
+      image: './pics/panel/footwear.png'
+    },
+    {
+      id: 'foot-2',
+      name: 'Casual Sneakers',
+      brand: 'Vestra Casual',
+      price: 1799,
+      image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_27_41 PM.png'
+    },
+    {
+      id: 'foot-3',
+      name: 'Formal Leather Shoes',
+      brand: 'Vestra Formal',
+      price: 2999,
+      image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_27_48 PM.png'
+    },
+    {
+      id: 'foot-4',
+      name: 'Sports Sandals',
+      brand: 'Vestra Outdoor',
+      price: 999,
+      image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_33_20 PM.png'
+    },
+    {
+      id: 'foot-5',
+      name: 'Heels',
+      brand: 'Vestra Glam',
+      price: 2199,
+      image: './pics/panel/women.png'
+    },
+    {
+      id: 'foot-6',
+      name: 'Loafers',
+      brand: 'Vestra Classic',
+      price: 1899,
+      image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_39_27 PM.png'
+    },
+    {
+      id: 'foot-7',
+      name: 'Ballet Flats',
+      brand: 'Vestra Comfort',
+      price: 1299,
+      image: './pics/panel/beauty.png'
+    },
+    {
+      id: 'foot-8',
+      name: 'Boots',
+      brand: 'Vestra Winter',
+      price: 3499,
+      image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_40_08 PM.png'
+    }
+  ];
+
+  // Render products
+  document.getElementById('footwear-products').innerHTML = footwearProducts.map(product => createProductCard(product)).join('');
+</script>
 </body>
 </html>
