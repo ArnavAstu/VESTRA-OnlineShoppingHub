@@ -19,3 +19,6 @@
 - Bag: Add to cart, quantity +/- controls, remove item
 - Badge counters on header icons
 - Responsive product grid layout
+
+## Changes Pushed to GitHub:
+- Pull Request: https://github.com/ArnavAstu/vestra/pull/1
