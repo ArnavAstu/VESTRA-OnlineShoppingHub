@@ -14,6 +14,7 @@ function getWishlist() {
 function saveWishlist(wishlist) {
   localStorage.setItem(WISHLIST_KEY, JSON.stringify(wishlist));
   updateWishlistCount();
+  renderAllProductGrids();
 }
 
 // Get bag from localStorage
@@ -36,7 +37,7 @@ function addToWishlist(product) {
   if (!exists) {
     wishlist.push(product);
     saveWishlist(wishlist);
-    showNotification('Added to Wishlist!');
+    showNotification(`${product.name} added to Wishlist`);
     return true;
   } else {
     showNotification('Already in Wishlist!');
@@ -73,7 +74,7 @@ function addToBag(product, size = null, color = null) {
       color: color,
       quantity: 1
     });
-    showNotification('Added to Bag!');
+    showNotification(`${product.name} added to Bag`);
   }
   
   saveBag(bag);
@@ -141,23 +142,31 @@ function getBagTotal() {
   return bag.reduce((total, item) => total + (item.price * item.quantity), 0);
 }
 
-// Show notification
+// Show notification with item name
 function showNotification(message) {
+  // Remove any existing notifications
+  const existing = document.querySelector('.vestra-notification');
+  if (existing) existing.remove();
+  
   const notification = document.createElement('div');
   notification.className = 'vestra-notification';
-  notification.textContent = message;
+  notification.innerHTML = `<i class="fa-solid fa-check-circle"></i> ${message}`;
   document.body.appendChild(notification);
   
-  setTimeout(() => {
+  // Trigger animation
+  requestAnimationFrame(() => {
     notification.classList.add('show');
-  }, 10);
+  });
   
+  // Remove after 2.5 seconds
   setTimeout(() => {
     notification.classList.remove('show');
     setTimeout(() => {
-      document.body.removeChild(notification);
+      if (notification.parentNode) {
+        document.body.removeChild(notification);
+      }
     }, 300);
-  }, 2000);
+  }, 2500);
 }
 
 // Move item from wishlist to bag
@@ -274,15 +283,18 @@ function renderBagPage() {
   updateBagCount();
 }
 
-// Create product card HTML
+// Create product card HTML with proper heart icon
 function createProductCard(product) {
   const inWishlist = isInWishlist(product.id);
+  const heartClass = inWishlist ? 'fa-solid' : 'fa-regular';
+  const activeClass = inWishlist ? 'active' : '';
+  
   return `
     <div class="product-card">
       <div class="product-image">
         <img src="${product.image}" alt="${product.name}">
-        <button class="btn-wishlist ${inWishlist ? 'active' : ''}" onclick="toggleWishlist(${JSON.stringify(product).replace(/"/g, '"')})">
-          <i class="${inWishlist ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+        <button class="btn-wishlist ${activeClass}" onclick="handleWishlistClick(${JSON.stringify(product).replace(/"/g, '"')})">
+          <i class="${heartClass} fa-heart"></i>
         </button>
       </div>
       <div class="product-info">
@@ -297,6 +309,36 @@ function createProductCard(product) {
   `;
 }
 
+// Handle wishlist click with proper UI update
+function handleWishlistClick(product) {
+  const inWishlist = isInWishlist(product.id);
+  
+  if (inWishlist) {
+    removeFromWishlist(product.id);
+  } else {
+    addToWishlist(product);
+  }
+  
+  // Re-render all product grids to update heart icons
+  renderAllProductGrids();
+}
+
+// Render all product grids on the page
+function renderAllProductGrids() {
+  // Find all product grid containers and re-render them
+  const gridIds = ['men-products', 'women-products', 'kids-products', 'footwear-products', 'beauty-products'];
+  
+  gridIds.forEach(gridId => {
+    const container = document.getElementById(gridId);
+    if (container && window[gridId.replace('-', 'Products')]) {
+      const products = window[gridId.replace('-products', 'Products')];
+      if (products) {
+        container.innerHTML = products.map(product => createProductCard(product)).join('');
+      }
+    }
+  });
+}
+
 // Toggle wishlist from product card
 function toggleWishlist(product) {
   if (isInWishlist(product.id)) {
@@ -304,6 +346,7 @@ function toggleWishlist(product) {
   } else {
     addToWishlist(product);
   }
+  renderAllProductGrids();
 }
 
 // Add to bag from product card
@@ -331,6 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === WISHLIST_KEY || e.key === BAG_KEY) {
       updateWishlistCount();
       updateBagCount();
+      renderAllProductGrids();
       
       // Re-render pages if on wishlist or bag page
       if (document.getElementById('wishlist-items')) {
