@@ -122,4 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
     loadProducts();
   }
 
+
+
 });
