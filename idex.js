@@ -35,11 +35,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 3000);
   }
 
-  const logo = document.querySelector(".im");
+const logo = document.querySelector(".im");
   if (logo) {
     logo.addEventListener("click", () => {
       window.open("./index.html", "_self");
     });
+  }
+
+  // Featured Products for homepage
+  const featuredContainer = document.getElementById("featured-products");
+  if (featuredContainer) {
+    const featuredProducts = [
+      {id: 'feat-1', name: 'Classic Shirt', brand: 'Vestra Mens', price: 1299, image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_13_22 PM.png'},
+      {id: 'feat-2', name: 'Designer Dress', brand: 'Vestra Womens', price: 2499, image: './pics/panel/ChatGPT Image Feb 8, 2026, 07_18_33 PM.png'},
+      {id: 'feat-3', name: 'Kids Combo', brand: 'Vestra Kids', price: 999, image: './pics/kids pics/ChatGPT Image Feb 8, 2026, 11_01_06 PM.png'},
+      {id: 'feat-4', name: 'Running Shoes', brand: 'Vestra Sports', price: 2999, image: './pics/panel/footwear.png'}
+    ];
+    if (typeof createProductCard === 'function') {
+      featuredContainer.innerHTML = featuredProducts.map(product => createProductCard(product)).join('');
+    }
   }
 
   const container = document.getElementById("productContainer");

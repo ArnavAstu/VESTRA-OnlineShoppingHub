@@ -6,41 +6,38 @@
   <title>My Bag - VESTRA</title>
   <link rel="icon" type="image/x-icon" href="./logo/tb.ico">
   <link rel="stylesheet" href="style.css">
-
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-/>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <div class="header">
     <div class="imag">
-      <a href="./index.html"><img src="./logo/input-onlinepngtools.png" class="im"></a>
+      <img src="./logo/input-onlinepngtools.png" class="im">
     </div>
 
     <div class="nav-links">
-    <nav>
-    <a href="./men.html">MEN</a>
-    <a href="./women.html">WOMEN</a>
-    <a href="./kids.html">KIDS</a>
-    <a href="./footwear.html">FOOTWEAR</a>
-    <a href="./beauty.html">BEAUTY</a>
-    </nav>
+      <nav class="navi">
+        <a href="./men.html">MEN</a>
+        <a href="./women.html">WOMEN</a>
+        <a href="./kids.html">KIDS</a>
+        <a href="./footwear.html">FOOTWEAR</a>
+        <a href="./beauty.html">BEAUTY</a>
+      </nav>
     </div>
 
     <div class="search">
       <input type="text" class="ss" placeholder=" 🔍     Search for products, brands and more">
     </div>
 
-    <div class="bag">
+    <div class="bag" id="bg">
       <div class="action">
-        <a href="./profile.html"><i class="fa-regular fa-user"></i>
-        <span>Profile</span></a>
+        <a href="./profile.html">
+          <i class="fa-regular fa-user"></i>
+          <span>Profile</span>
+        </a>
       </div>
 
       <div class="action">
@@ -59,14 +56,13 @@
         </a>
       </div>
     </div>
-  
   </div>
 
   <div class="bag-container">
     <div class="bag-items">
-      <h1>My Bag (<span id="bag-count-display">0</span> items)</h1>
+      <h1>My Bag (<span id="bag-count-text">0</span> items)</h1>
       <div id="bag-items">
-        <!-- Bag items will be rendered by JavaScript -->
+        <!-- Bag items will be rendered here -->
       </div>
     </div>
 
@@ -74,91 +70,74 @@
       <div class="summary-card">
         <h3>Price Details</h3>
         <div class="summary-row">
-          <span>Total MRP</span>
-          <span id="total-mrp">₹0</span>
+          <span>Bag Total</span>
+          <span id="total-amount">₹0</span>
         </div>
         <div class="summary-row">
-          <span>Discount on MRP</span>
-          <span style="color: #28a745;">-₹0</span>
-        </div>
-        <div class="summary-row">
-          <span>Shipping Charges</span>
+          <span>Shipping</span>
           <span>Free</span>
         </div>
         <div class="summary-row total">
-          <span>Total Amount</span>
-          <span id="total-amount">₹0</span>
+          <span>Total</span>
+          <span id="total-amount-final">₹0</span>
         </div>
-        <button class="btn-checkout" onclick="checkout()">
-          <i class="fa-solid fa-lock"></i> Secure Checkout
-        </button>
+        <button class="btn-checkout" onclick="checkout()">Proceed to Checkout</button>
       </div>
     </div>
   </div>
 
   <div class="nt">
-  <div class="nxt">
-    <div>
-      <h3>About us</h3><br/>
-      <nav>
-        <a href="#">Who are we ?</a><br/>
-        <a href="#">Terms and Conditions</a>
-      </nav>
-    </div>
-    <div>
-      <h3>Help</h3><br/>
-      <nav>
-        <a href="#">Frequently asked questions</a><br/>
-        <a href="#">Payments</a><br/>
-        <a href="#">Customer Care</a><br/>
-        <a href="#">How do I redeem my coupon code ?</a>
-      </nav>
-    </div>
-    <div>
-      <h3>Shop By</h3><br/>
-      <nav>
-        <a href="#">Men</a><br/>
-        <a href="#">Women</a><br/>
-        <a href="#">Kids</a><br/>
-        <a href="#">Footwear</a><br/>
-        <a href="#">Beauty</a>
-      </nav>
-    </div>
-    <div>
-      <h3>Follow us</h3><br/>
-      <nav>
-        <a href="#">Instagram</a><br/>
-        <a href="#">Twitter</a><br/>
-      </nav>
+    <div class="nxt">
+      <div>
+        <h3>About us</h3><br/>
+        <nav>
+          <a href="#">Who are we ?</a><br/>
+          <a href="#">Terms and Conditions</a>
+        </nav>
+      </div>
+      <div>
+        <h3>Help</h3><br/>
+        <nav>
+          <a href="#">Frequently asked questions</a><br/>
+          <a href="#">Payments</a><br/>
+          <a href="#">Customer Care</a><br/>
+          <a href="#">How do I redeem my coupon code ?</a>
+        </nav>
+      </div>
+      <div>
+        <h3>Shop By</h3><br/>
+        <nav>
+          <a href="#">Men</a><br/>
+          <a href="#">Women</a><br/>
+          <a href="#">Kids</a><br/>
+          <a href="#">Footwear</a><br/>
+          <a href="#">Beauty</a>
+        </nav>
+      </div>
+      <div>
+        <h3>Follow us</h3><br/>
+        <nav>
+          <a href="#">Instagram</a><br/>
+          <a href="#">Instagram</a><br/>
+          <a href="#">Twitter</a><br/>
+          <a href="#">Twitter</a><br/>
+        </nav>
+      </div>
     </div>
   </div>
-  <img src="./temp/num.PNG">
-</div>
 
-<script src="cart.js"></script>
-<script>
-  // Override renderBagPage to update the summary
-  const originalRenderBagPage = renderBagPage;
-  renderBagPage = function() {
-    originalRenderBagPage();
-    
-    const bag = getBag();
-    const total = getBagTotal();
-    
-    document.getElementById('bag-count-display').textContent = bag.reduce((sum, item) => sum + item.quantity, 0);
-    document.getElementById('total-mrp').textContent = '₹' + total;
-    document.getElementById('total-amount').textContent = '₹' + total;
-  };
-
-  // Checkout function
-  function checkout() {
-    const bag = getBag();
-    if (bag.length === 0) {
-      showNotification('Your bag is empty!');
-      return;
+  <script src="cart.js"></script>
+  <script>
+    function checkout() {
+      const bag = getBag();
+      if (bag.length > 0) {
+        alert('Thank you for your order! Total: ₹' + getBagTotal());
+        localStorage.removeItem('vestra_bag');
+        renderBagPage();
+      } else {
+        alert('Your bag is empty!');
+      }
     }
-    showNotification('Proceeding to checkout...');
-  }
-</script>
+  </script>
 </body>
 </html>

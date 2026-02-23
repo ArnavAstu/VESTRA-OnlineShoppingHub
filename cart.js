@@ -4,6 +4,9 @@
 const WISHLIST_KEY = 'vestra_wishlist';
 const BAG_KEY = 'vestra_bag';
 
+// Store products temporarily for button clicks
+let currentProducts = [];
+
 // Get wishlist from localStorage
 function getWishlist() {
   const wishlist = localStorage.getItem(WISHLIST_KEY);
@@ -14,6 +17,7 @@ function getWishlist() {
 function saveWishlist(wishlist) {
   localStorage.setItem(WISHLIST_KEY, JSON.stringify(wishlist));
   updateWishlistCount();
+  updateProductCards();
 }
 
 // Get bag from localStorage
@@ -68,7 +72,12 @@ function addToBag(product, size = null, color = null) {
     showNotification('Added to Bag!');
   } else {
     bag.push({
-      ...product,
+      id: product.id,
+      name: product.name,
+      brand: product.brand,
+      price: product.price,
+      discount: product.discount,
+      image: product.image,
       size: size,
       color: color,
       quantity: 1
@@ -118,44 +127,61 @@ function getBagCount() {
 // Update wishlist count badge
 function updateWishlistCount() {
   const count = getWishlistCount();
-  const badge = document.getElementById('wishlist-count');
-  if (badge) {
-    badge.textContent = count;
-    badge.style.display = count > 0 ? 'flex' : 'none';
-  }
+  const badges = document.querySelectorAll('#wishlist-count');
+  badges.forEach(badge => {
+    if (badge) {
+      badge.textContent = count;
+      badge.style.display = count > 0 ? 'flex' : 'none';
+    }
+  });
 }
 
 // Update bag count badge
 function updateBagCount() {
   const count = getBagCount();
-  const badge = document.getElementById('bag-count');
-  if (badge) {
-    badge.textContent = count;
-    badge.style.display = count > 0 ? 'flex' : 'none';
-  }
+  const badges = document.querySelectorAll('#bag-count');
+  badges.forEach(badge => {
+    if (badge) {
+      badge.textContent = count;
+      badge.style.display = count > 0 ? 'flex' : 'none';
+    }
+  });
 }
 
 // Get total price in bag
 function getBagTotal() {
   const bag = getBag();
-  return bag.reduce((total, item) => total + (item.price * item.quantity), 0);
+  return bag.reduce((total, item) => {
+    const discountedPrice = getDiscountedPrice(item.price, item.discount);
+    return total + (discountedPrice * item.quantity);
+  }, 0);
 }
 
 // Show notification
 function showNotification(message) {
+  // Remove existing notification if any
+  const existing = document.querySelector('.vestra-notification');
+  if (existing) {
+    existing.remove();
+  }
+  
   const notification = document.createElement('div');
   notification.className = 'vestra-notification';
   notification.textContent = message;
   document.body.appendChild(notification);
   
+  // Trigger animation
   setTimeout(() => {
     notification.classList.add('show');
   }, 10);
   
+  // Remove after delay
   setTimeout(() => {
     notification.classList.remove('show');
     setTimeout(() => {
-      document.body.removeChild(notification);
+      if (notification.parentNode) {
+        notification.parentNode.removeChild(notification);
+      }
     }, 300);
   }, 2000);
 }
@@ -178,12 +204,56 @@ function getDiscountedPrice(price, discount) {
   return Math.round(price - (price * discount / 100));
 }
 
+// Toggle wishlist - called from button click
+function toggleWishlistBtn(productId) {
+  const product = currentProducts.find(p => p.id === productId);
+  if (product) {
+    if (isInWishlist(productId)) {
+      removeFromWishlist(productId);
+    } else {
+      addToWishlist(product);
+    }
+  }
+}
+
+// Add to bag - called from button click
+function addToBagBtn(productId) {
+  const product = currentProducts.find(p => p.id === productId);
+  if (product) {
+    addToBag(product);
+  }
+}
+
+// Update all product cards to reflect wishlist status
+function updateProductCards() {
+  const productCards = document.querySelectorAll('.product-card');
+  productCards.forEach(card => {
+    const btn = card.querySelector('.btn-wishlist');
+    if (btn && btn.dataset.productId) {
+      const productId = btn.dataset.productId;
+      if (isInWishlist(productId)) {
+        btn.classList.add('active');
+        btn.innerHTML = '<i class="fa-solid fa-heart"></i>';
+      } else {
+        btn.classList.remove('active');
+        btn.innerHTML = '<i class="fa-regular fa-heart"></i>';
+      }
+    }
+  });
+}
+
 // Render wishlist page
 function renderWishlistPage() {
   const container = document.getElementById('wishlist-items');
   if (!container) return;
   
   const wishlist = getWishlist();
+  
+  // Update count display
+  const countDisplay = document.getElementById('wishlist-count-display');
+  if (countDisplay) {
+    countDisplay.textContent = wishlist.length;
+  }
   
   if (wishlist.length === 0) {
     container.innerHTML = `
@@ -237,6 +307,12 @@ function renderBagPage() {
   
   const bag = getBag();
   
+  // Update count display
+  const countDisplay = document.getElementById('bag-count-display');
+  if (countDisplay) {
+    countDisplay.textContent = bag.reduce((sum, item) => sum + item.quantity, 0);
+  }
+  
   if (bag.length === 0) {
     container.innerHTML = `
       <div class="empty-state">
@@ -254,6 +330,8 @@ function renderBagPage() {
   
   container.innerHTML = bag.map((item) => {
     const discountedPrice = getDiscountedPrice(item.price, item.discount);
+    const itemSize = item.size || '';
+    const itemColor = item.color || '';
     return `
       <div class="bag-item">
         <div class="bag-item-image">
@@ -262,8 +340,8 @@ function renderBagPage() {
         <div class="bag-item-details">
           <h3>${item.name}</h3>
           <p class="brand">${item.brand}</p>
-          ${item.size ? `<p class="size">Size: ${item.size}</p>` : ''}
-          ${item.color ? `<p class="color">Color: ${item.color}</p>` : ''}
+          ${itemSize ? `<p class="size">Size: ${itemSize}</p>` : ''}
+          ${itemColor ? `<p class="color">Color: ${itemColor}</p>` : ''}
           <p class="price">
             <span class="discounted-price">₹${discountedPrice}</span>
             ${item.discount ? `<span class="original-price">₹${item.price}</span>` : ''}
@@ -271,11 +349,11 @@ function renderBagPage() {
         </div>
         <div class="bag-item-actions">
           <div class="quantity-control">
-            <button onclick="updateQuantity('${item.id}', '${item.size}', '${item.color}', -1)">-</button>
+            <button onclick="updateQuantity('${item.id}', '${itemSize}', '${itemColor}', -1)">-</button>
             <span>${item.quantity}</span>
-            <button onclick="updateQuantity('${item.id}', '${item.size}', '${item.color}', 1)">+</button>
+            <button onclick="updateQuantity('${item.id}', '${itemSize}', '${itemColor}', 1)">+</button>
           </div>
-          <button class="btn-remove" onclick="removeFromBag('${item.id}', '${item.size}', '${item.color}')">
+          <button class="btn-remove" onclick="removeFromBag('${item.id}', '${itemSize}', '${itemColor}')">
             <i class="fa-solid fa-trash"></i> Remove
           </button>
         </div>
@@ -292,12 +370,16 @@ function renderBagPage() {
     if (totalAmountEl) {
       totalAmountEl.textContent = `₹${total}`;
     }
+    const totalMrpEl = document.getElementById('total-mrp');
+    if (totalMrpEl) {
+      totalMrpEl.textContent = `₹${total}`;
+    }
   }
   
   updateBagCount();
 }
 
-// Create product card HTML with discount support
+// Create product card HTML with simplified click handlers
 function createProductCard(product) {
   const inWishlist = isInWishlist(product.id);
   const discountedPrice = getDiscountedPrice(product.price, product.discount);
@@ -307,7 +389,7 @@ function createProductCard(product) {
       <div class="product-image">
         <img src="${product.image}" alt="${product.name}">
         ${product.discount ? `<span class="discount-badge">${product.discount}% OFF</span>` : ''}
-        <button class="btn-wishlist ${inWishlist ? 'active' : ''}" onclick="toggleWishlist(${JSON.stringify(product).replace(/"/g, '"')})">
+        <button class="btn-wishlist ${inWishlist ? 'active' : ''}" data-product-id="${product.id}" onclick="toggleWishlistBtn('${product.id}')">
           <i class="${inWishlist ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
         </button>
       </div>
@@ -319,7 +401,7 @@ function createProductCard(product) {
           ${product.discount ? `<span class="original-price">₹${product.price}</span>` : ''}
         </p>
         <div class="product-actions">
-          <button class="btn-add-bag" onclick="addToBagFromCard(${JSON.stringify(product).replace(/"/g, '"')})">
+          <button class="btn-add-bag" onclick="addToBagBtn('${product.id}')">
             <i class="fa-solid fa-bag-shopping"></i> Add to Bag
           </button>
         </div>
@@ -328,18 +410,9 @@ function createProductCard(product) {
   `;
 }
 
-// Toggle wishlist from product card
-function toggleWishlist(product) {
-  if (isInWishlist(product.id)) {
-    removeFromWishlist(product.id);
-  } else {
-    addToWishlist(product);
-  }
-}
-
-// Add to bag from product card
-function addToBagFromCard(product) {
-  addToBag(product);
+// Set current products array
+function setCurrentProducts(products) {
+  currentProducts = products;
 }
 
 // Initialize on page load

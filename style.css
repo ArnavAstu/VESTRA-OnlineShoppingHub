@@ -159,7 +159,6 @@ width: 1515px;
 
 .nt > img {
   width: 1513px;
-
 }
 
 .nxt {
@@ -666,7 +665,7 @@ width: 1515px;
   color: #535766;
 }
 
-/* Discount Styles */
+/* Discount Badge */
 .discount-badge {
   position: absolute;
   top: 10px;

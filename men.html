@@ -6,41 +6,38 @@
   <title>Men's Fashion - VESTRA</title>
   <link rel="icon" type="image/x-icon" href="./logo/tb.ico">
   <link rel="stylesheet" href="style.css">
-
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-/>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <div class="header">
     <div class="imag">
-      <a href="./index.html"><img src="./logo/input-onlinepngtools.png" class="im"></a>
+      <img src="./logo/input-onlinepngtools.png" class="im">
     </div>
 
     <div class="nav-links">
-    <nav>
-    <a href="./men.html">MEN</a>
-    <a href="./women.html">WOMEN</a>
-    <a href="./kids.html">KIDS</a>
-    <a href="./footwear.html">FOOTWEAR</a>
-    <a href="./beauty.html">BEAUTY</a>
-    </nav>
+      <nav class="navi">
+        <a href="./men.html">MEN</a>
+        <a href="./women.html">WOMEN</a>
+        <a href="./kids.html">KIDS</a>
+        <a href="./footwear.html">FOOTWEAR</a>
+        <a href="./beauty.html">BEAUTY</a>
+      </nav>
     </div>
 
     <div class="search">
       <input type="text" class="ss" placeholder=" 🔍     Search for products, brands and more">
     </div>
 
-    <div class="bag">
+    <div class="bag" id="bg">
       <div class="action">
-        <a href="./profile.html"><i class="fa-regular fa-user"></i>
-        <span>Profile</span></a>
+        <a href="./profile.html">
+          <i class="fa-regular fa-user"></i>
+          <span>Profile</span>
+        </a>
       </div>
 
       <div class="action">
@@ -59,146 +56,78 @@
         </a>
       </div>
     </div>
-  
   </div>
 
   <div class="category-header">
-    <h1>Men's Fashion</h1>
-    <p>Explore the latest trends in men's clothing</p>
+    <h1>Men's Collection</h1>
+    <p>Explore the latest trends in men's fashion</p>
   </div>
 
-  <div class="sort-container">
-    <label for="sortSelect">Sort By:</label>
-    <select id="sortSelect">
-      <option value="">Default</option>
-      <option value="price-asc">Price: Low to High</option>
-      <option value="price-desc">Price: High to Low</option>
-      <option value="rating-desc">Rating: High to Low</option>
-    </select>
-  </div>
-
-  <div class="product-grid" id="men-products">
-    <!-- Products will be rendered by JavaScript -->
+  <div class="product-grid" id="productContainer">
+    <!-- Products will be rendered here -->
   </div>
 
   <div class="nt">
-  <div class="nxt">
-    <div>
-      <h3>About us</h3><br/>
-      <nav>
-        <a href="#">Who are we ?</a><br/>
-        <a href="#">Terms and Conditions</a>
-      </nav>
-    </div>
-    <div>
-      <h3>Help</h3><br/>
-      <nav>
-        <a href="#">Frequently asked questions</a><br/>
-        <a href="#">Payments</a><br/>
-        <a href="#">Customer Care</a><br/>
-        <a href="#">How do I redeem my coupon code ?</a>
-      </nav>
-    </div>
-    <div>
-      <h3>Shop By</h3><br/>
-      <nav>
-        <a href="#">Men</a><br/>
-        <a href="#">Women</a><br/>
-        <a href="#">Kids</a><br/>
-        <a href="#">Footwear</a><br/>
-        <a href="#">Beauty</a>
-      </nav>
-    </div>
-    <div>
-      <h3>Follow us</h3><br/>
-      <nav>
-        <a href="#">Instagram</a><br/>
-        <a href="#">Instagram</a><br/>
-        <a href="#">Twitter</a><br/>
-        <a href="#">Twitter</a><br/>
-      </nav>
+    <div class="nxt">
+      <div>
+        <h3>About us</h3><br/>
+        <nav>
+          <a href="#">Who are we ?</a><br/>
+          <a href="#">Terms and Conditions</a>
+        </nav>
+      </div>
+      <div>
+        <h3>Help</h3><br/>
+        <nav>
+          <a href="#">Frequently asked questions</a><br/>
+          <a href="#">Payments</a><br/>
+          <a href="#">Customer Care</a><br/>
+          <a href="#">How do I redeem my coupon code ?</a>
+        </nav>
+      </div>
+      <div>
+        <h3>Shop By</h3><br/>
+        <nav>
+          <a href="#">Men</a><br/>
+          <a href="#">Women</a><br/>
+          <a href="#">Kids</a><br/>
+          <a href="#">Footwear</a><br/>
+          <a href="#">Beauty</a>
+        </nav>
+      </div>
+      <div>
+        <h3>Follow us</h3><br/>
+        <nav>
+          <a href="#">Instagram</a><br/>
+          <a href="#">Instagram</a><br/>
+          <a href="#">Twitter</a><br/>
+          <a href="#">Twitter</a><br/>
+        </nav>
+      </div>
     </div>
   </div>
-  <img src="./temp/num.PNG">
-</div>
 
-<script src="cart.js"></script>
-<script>
-  // Sample products for Men with random discounts
-  window.menProducts = [
-    {
-      id: 'men-1',
-      name: 'Classic Cotton T-Shirt',
-      brand: 'Vestra Basics',
-      price: 899,
-      discount: 25,
-      image: './pics/menPICS/tshirt1.png'
-    },
-    {
-      id: 'men-2',
-      name: 'Slim Fit Jeans',
-      brand: 'Vestra Denim',
-      price: 1299,
-      discount: 40,
-      image: './pics/menPICS/jeans1.png'
-    },
-    {
-      id: 'men-3',
-      name: 'Casual T-Shirt',
-      brand: 'Vestra Active',
-      price: 699,
-      discount: 15,
-      image: './pics/menPICS/tshirt2.png'
-    },
-    {
-      id: 'men-4',
-      name: 'Formal Shirt',
-      brand: 'Vestra Premium',
-      price: 2999,
-      discount: 50,
-      image: './pics/menPICS/shirt1.png'
-    },
-    {
-      id: 'men-5',
-      name: 'Wool Sweatshirt',
-      brand: 'Vestra Winter',
-      price: 1599,
-      discount: 30,
-      image: './pics/menPICS/sweatshirt1.png'
-    },
-    {
-      id: 'men-6',
-      name: 'Casual Pants',
-      brand: 'Vestra Outdoor',
-      price: 1199,
-      discount: 20,
-      image: './pics/menPICS/pant1.png'
-    },
-    {
-      id: 'men-7',
-      name: 'Designer T-Shirt',
-      brand: 'Vestra Sport',
-      price: 749,
-      discount: 35,
-      image: './pics/menPICS/tshirt3.png'
-    },
-    {
-      id: 'men-8',
-      name: 'Hoodie',
-      brand: 'Vestra Accessories',
-      price: 599,
-      discount: 10,
-      image: './pics/menPICS/hoodie1.png'
-    }
-  ];
+  <script>
+    // Sample Men's Products
+    const menProducts = [
+      {id: 'men-1', name: 'Classic Cotton Shirt', brand: 'Vestra Mens', price: 1299, image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_13_22 PM.png'},
+      {id: 'men-2', name: 'Slim Fit Jeans', brand: 'Vestra Mens', price: 1899, image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_13_34 PM.png'},
+      {id: 'men-3', name: 'Casual T-Shirt Pack', brand: 'Vestra Mens', price: 999, image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_13_40 PM.png'},
+      {id: 'men-4', name: 'Formal Blazer', brand: 'Vestra Mens', price: 3999, image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_13_45 PM.png'},
+      {id: 'men-5', name: 'Wool Sweater', brand: 'Vestra Mens', price: 2199, image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_13_49 PM.png'},
+      {id: 'men-6', name: 'Chino Pants', brand: 'Vestra Mens', price: 1699, image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_15_33 PM.png'},
+      {id: 'men-7', name: 'Denim Jacket', brand: 'Vestra Mens', price: 2499, image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_23_02 PM.png'},
+      {id: 'men-8', name: 'Polo Shirt', brand: 'Vestra Mens', price: 1199, image: './pics/men pics/ChatGPT Image Feb 8, 2026, 10_23_09 PM.png'}
+    ];
 
-  // Render products when DOM is ready
-  document.addEventListener('DOMContentLoaded', function() {
-    const container = document.getElementById('men-products');
-    if (container && window.menProducts) {
-      container.innerHTML = window.menProducts.map(product => createProductCard(product)).join('');
-    }
-  });
-</script>
+    // Render products when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      const container = document.getElementById('productContainer');
+      if (container && typeof createProductCard === 'function') {
+        container.innerHTML = menProducts.map(product => createProductCard(product)).join('');
+      }
+    });
+  </script>
+  <script src="cart.js"></script>
 </body>
 </html>

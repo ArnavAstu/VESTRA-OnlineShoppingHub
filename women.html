@@ -6,26 +6,20 @@
   <title>Women's Fashion - VESTRA</title>
   <link rel="icon" type="image/x-icon" href="./logo/tb.ico">
   <link rel="stylesheet" href="style.css">
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-
   <div class="header">
     <div class="imag">
-      <a href="./index.html"><img src="./logo/input-onlinepngtools.png" class="im"></a>
+      <img src="./logo/input-onlinepngtools.png" class="im">
     </div>
 
     <div class="nav-links">
-      <nav>
+      <nav class="navi">
         <a href="./men.html">MEN</a>
         <a href="./women.html">WOMEN</a>
         <a href="./kids.html">KIDS</a>
@@ -35,13 +29,15 @@
     </div>
 
     <div class="search">
-      <input type="text" class="ss" placeholder=" 🔍 Search for products, brands and more">
+      <input type="text" class="ss" placeholder=" 🔍     Search for products, brands and more">
     </div>
 
-    <div class="bag">
+    <div class="bag" id="bg">
       <div class="action">
-        <a href="./profile.html"><i class="fa-regular fa-user"></i>
-        <span>Profile</span></a>
+        <a href="./profile.html">
+          <i class="fa-regular fa-user"></i>
+          <span>Profile</span>
+        </a>
       </div>
 
       <div class="action">
@@ -63,25 +59,14 @@
   </div>
 
   <div class="category-header">
-    <h1>Women's Fashion</h1>
-    <p>Discover the latest trends in women's clothing</p>
+    <h1>Women's Collection</h1>
+    <p>Explore the latest trends in women's fashion</p>
   </div>
 
-  <div class="sort-container">
-    <label for="sortSelect">Sort By:</label>
-    <select id="sortSelect">
-      <option value="">Default</option>
-      <option value="price-asc">Price: Low to High</option>
-      <option value="price-desc">Price: High to Low</option>
-      <option value="rating-desc">Rating: High to Low</option>
-    </select>
+  <div class="product-grid" id="productContainer">
+    <!-- Products will be rendered here -->
   </div>
 
-  <div class="product-grid" id="women-products">
-    <!-- Products will be rendered by JavaScript -->
-  </div>
-
-  <!-- FOOTER -->
   <div class="nt">
     <div class="nxt">
       <div>
@@ -91,7 +76,6 @@
           <a href="#">Terms and Conditions</a>
         </nav>
       </div>
-
       <div>
         <h3>Help</h3><br/>
         <nav>
@@ -101,107 +85,47 @@
           <a href="#">How do I redeem my coupon code ?</a>
         </nav>
       </div>
-
       <div>
         <h3>Shop By</h3><br/>
         <nav>
-          <a href="./men.html">Men</a><br/>
-          <a href="./women.html">Women</a><br/>
-          <a href="./kids.html">Kids</a><br/>
-          <a href="./footwear.html">Footwear</a><br/>
-          <a href="./beauty.html">Beauty</a>
+          <a href="#">Men</a><br/>
+          <a href="#">Women</a><br/>
+          <a href="#">Kids</a><br/>
+          <a href="#">Footwear</a><br/>
+          <a href="#">Beauty</a>
         </nav>
       </div>
-
       <div>
         <h3>Follow us</h3><br/>
         <nav>
           <a href="#">Instagram</a><br/>
+          <a href="#">Instagram</a><br/>
+          <a href="#">Twitter</a><br/>
           <a href="#">Twitter</a><br/>
         </nav>
       </div>
     </div>
-
-    <img src="./temp/num.PNG">
   </div>
 
-<script src="cart.js"></script>
-<script>
-  // Sample products for Women with random discounts
-  window.womenProducts = [
-    {
-      id: 'women-1',
-      name: 'Floral Summer Dress',
-      brand: 'Vestra Fashion',
-      price: 1499,
-      discount: 30,
-      image: './pics/womenPICS/pic1.jpg'
-    },
-    {
-      id: 'women-2',
-      name: 'Designer Saree',
-      brand: 'Vestra Ethnic',
-      price: 3999,
-      discount: 45,
-      image: './pics/womenPICS/pic2.jpg'
-    },
-    {
-      id: 'women-3',
-      name: 'Casual Kurti',
-      brand: 'Vestra Comfort',
-      price: 899,
-      discount: 20,
-      image: './pics/womenPICS/pic3.jpg'
-    },
-    {
-      id: 'women-4',
-      name: 'Denim Jacket',
-      brand: 'Vestra Denim',
-      price: 2199,
-      discount: 35,
-      image: './pics/womenPICS/pic4.jpg'
-    },
-    {
-      id: 'women-5',
-      name: 'Lehengas',
-      brand: 'Vestra Party',
-      price: 5999,
-      discount: 50,
-      image: './pics/womenPICS/pic5.jpg'
-    },
-    {
-      id: 'women-6',
-      name: 'Palazzo',
-      brand: 'Vestra Bottom',
-      price: 799,
-      discount: 15,
-      image: './pics/womenPICS/pic6.jpg'
-    },
-    {
-      id: 'women-7',
-      name: 'Tops',
-      brand: 'Vestra Tops',
-      price: 649,
-      discount: 25,
-      image: './pics/womenPICS/pic7.jpg'
-    },
-    {
-      id: 'women-8',
-      name: 'Skirts',
-      brand: 'Vestra Skirts',
-      price: 999,
-      discount: 40,
-      image: './pics/womenPICS/pic8.jpg'
-    }
-  ];
+  <script>
+    // Sample Women's Products
+    const womenProducts = [
+      {id: 'women-1', name: 'Designer Saree', brand: 'Vestra Womens', price: 2499, image: './pics/panel/ChatGPT Image Feb 8, 2026, 07_18_33 PM.png'},
+      {id: 'women-2', name: 'Floral Kurti Set', brand: 'Vestra Womens', price: 1899, image: './pics/panel/ChatGPT Image Feb 8, 2026, 07_19_09 PM.png'},
+      {id: 'women-3', name: 'Lehenga Choli', brand: 'Vestra Womens', price: 4999, image: './pics/panel/ChatGPT Image Feb 8, 2026, 07_19_23 PM.png'},
+      {id: 'women-4', name: 'Anarkali Suit', brand: 'Vestra Womens', price: 3299, image: './pics/panel/ChatGPT Image Feb 8, 2026, 07_19_39 PM.png'},
+      {id: 'women-5', name: 'Palazzo Set', brand: 'Vestra Womens', price: 1599, image: './pics/panel/ChatGPT Image Feb 8, 2026, 07_19_53 PM.png'},
+      {id: 'women-6', name: 'Crop Top & Skirt', brand: 'Vestra Womens', price: 1299, image: './pics/panel/women.png'}
+    ];
 
-  // Render products when DOM is ready
-  document.addEventListener('DOMContentLoaded', function() {
-    const container = document.getElementById('women-products');
-    if (container && window.womenProducts) {
-      container.innerHTML = window.womenProducts.map(product => createProductCard(product)).join('');
-    }
-  });
-</script>
+    // Render products when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      const container = document.getElementById('productContainer');
+      if (container && typeof createProductCard === 'function') {
+        container.innerHTML = womenProducts.map(product => createProductCard(product)).join('');
+      }
+    });
+  </script>
+  <script src="cart.js"></script>
 </body>
 </html>
