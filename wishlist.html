@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist - VESTRA</title>
+  <link rel="icon" type="image/x-icon" href="./logo/tb.ico">
+  <link rel="stylesheet" href="style.css">
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+
+  <style>
+    .wishlist-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .wishlist-title {
+      font-family: "Oswald", sans-serif;
+      color: #362F4F;
+      margin-bottom: 30px;
+    }
+
+    .wishlist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .wishlist-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .wishlist-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .wishlist-card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .product-name {
+      font-family: "Oswald", sans-serif;
+      margin-top: 10px;
+      font-size: 16px;
+      color: #362F4F;
+    }
+
+    .product-price {
+      font-family: "Oswald", sans-serif;
+      color: #FF6B6B;
+      margin: 5px 0;
+    }
+
+    .remove-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: white;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      color: #FF6B6B;
+    }
+
+    .add-to-bag {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #FFA47F;
+      border: none;
+      color: white;
+      font-family: "Oswald", sans-serif;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    .add-to-bag:hover {
+      background-color: #FF6B6B;
+    }
+
+    .empty-wishlist {
+      text-align: center;
+      font-family: "Oswald", sans-serif;
+      margin-top: 50px;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER (same as other pages) -->
+  <div class="header">
+    <div class="imag">
+      <img src="./logo/input-onlinepngtools.png" class="im">
+    </div>
+
+    <div class="nav-links">
+      <nav>
+        <a href="./men.html">MEN</a>
+        <a href="./women.html">WOMEN</a>
+        <a href="./kids.html">KIDS</a>
+        <a href="./footwear.html">FOOTWEAR</a>
+        <a href="./beauty.html">BEAUTY</a>
+      </nav>
+    </div>
+
+    <div class="search">
+      <input type="text" class="ss" placeholder="Search for products, brands and more">
+    </div>
+
+    <div class="bag">
+      <div class="action">
+        <a href="./profile.html"><i class="fa-regular fa-user"></i> <span>Profile</span></a>
+      </div>
+
+      <div class="action">
+        <a href="./wishlist.html"><i class="fa-solid fa-heart"></i> <span>Wishlist</span></a>
+      </div>
+
+      <div class="action">
+        <a href="./bag.html"><i class="fa-solid fa-bag-shopping"></i> <span>Bag</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wishlist-container">
+    <h1 class="wishlist-title">My Wishlist (3 Items)</h1>
+
+    <div class="wishlist-grid">
+
+      <div class="wishlist-card">
+        <button class="remove-btn"><i class="fa-solid fa-xmark"></i></button>
+        <img src="./pics/shoe1.jpg" alt="Product">
+        <div class="product-name">VESTRA Air Sneakers</div>
+        <div class="product-price">₹4,999</div>
+        <button class="add-to-bag">Add to Bag</button>
+      </div>
+
+      <div class="wishlist-card">
+        <button class="remove-btn"><i class="fa-solid fa-xmark"></i></button>
+        <img src="./pics/jacket.jpg" alt="Product">
+        <div class="product-name">VESTRA Denim Jacket</div>
+        <div class="product-price">₹2,499</div>
+        <button class="add-to-bag">Add to Bag</button>
+      </div>
+
+      <div class="wishlist-card">
+        <button class="remove-btn"><i class="fa-solid fa-xmark"></i></button>
+        <img src="./pics/watch.jpg" alt="Product">
+        <div class="product-name">VESTRA Blue Facial Cream</div>
+        <div class="product-price">₹1,999</div>
+        <button class="add-to-bag">Add to Bag</button>
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <div class="nt">
+  <div class="nxt">
+    <div>
+      <h3>About us</h3><br/>
+      <nav>
+        <a href="./footer things/about us/about.html" target="_blank">Who are we ?</a><br/>
+        <a href="./footer things/about us/terms.html" target="_blank">Terms and Conditions</a>
+      </nav>
+    </div>
+    <div>
+      <h3>Help</h3><br/>
+      <nav>
+        <a href="./footer things/help/faq.html" target="_blank">Frequently asked questions</a><br/>
+        <a href="./footer things/help/payment.html" target="_blank">Payments</a><br/>
+        <a href="./footer things/help/customerCare.html" target="_blank">Customer Care</a><br/>
+        <a href="./footer things/help/couponCode.html" target="_blank">How do I redeem my coupon code ?</a>
+      </nav>
+    </div>
+    <div>
+      <h3>Shop By</h3><br/>
+      <nav>
+        <a href="./men.html">Men</a><br/>
+        <a href="./women.html">Women</a><br/>
+        <a href="./kids.html">Kids</a><br/>
+        <a href="./footwear.html">Footwear</a><br/>
+        <a href="./footwear.html">Beauty</a>
+      </nav>
+    </div>
+    <div>
+      <h3>Follow us</h3><br/>
+      <nav>
+        <a href="https://www.instagram.com/arnav_astu/" target="_blank">Instagram</a><br/>
+        <a href="https://www.instagram.com/bhadoria_ishan/" target="_blank">Instagram</a><br/>
+        <a href="https://x.com/ArnavAstu" target="_blank">Twitter</a><br/>
+        <a href="#" target="_blank">Twitter</a><br/>
+      </nav>
+    </div>
+  </div>
+  <img src="./temp/num.PNG">
+</div>
+
+</body>
+</html>
