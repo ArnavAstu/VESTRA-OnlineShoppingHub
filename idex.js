@@ -136,4 +136,6 @@ const logo = document.querySelector(".im");
     loadProducts();
   }
 
+
+
 });
