@@ -56,17 +56,9 @@
       flex: 1;
     }
 
-    .bag-details h3 {
-      color: #362F4F;
-    }
-
     .price {
       color: #FF6B6B;
       margin: 5px 0;
-    }
-
-    .qty {
-      margin-top: 10px;
     }
 
     .qty input {
@@ -95,11 +87,6 @@
       font-family: "Oswald", sans-serif;
     }
 
-    .summary h2 {
-      margin-bottom: 20px;
-      color: #362F4F;
-    }
-
     .summary-row {
       display: flex;
       justify-content: space-between;
@@ -125,11 +112,6 @@
       font-size: 16px;
       border-radius: 5px;
       cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .checkout-btn:hover {
-      background: #FF6B6B;
     }
 
     .empty-bag {
@@ -178,103 +160,145 @@
   </div>
 
   <div class="bag-container">
-
-    <div class="bag-items">
-      <h1 class="bag-title">My Bag (2 Items)</h1>
-
-
-      <div class="bag-card">
-        <button class="remove-item"><i class="fa-solid fa-xmark"></i></button>
-        <img src="./pics/shoe1.jpg" alt="Product">
-        <div class="bag-details">
-          <h3>VESTRA men JOGGERS</h3>
-          <div class="price">₹4,999</div>
-          <div>Size: 9</div>
-          <div class="qty">
-            Quantity:
-            <input type="number" value="1" min="1">
-          </div>
-        </div>
-      </div>
-
-      <div class="bag-card">
-        <button class="remove-item"><i class="fa-solid fa-xmark"></i></button>
-        <img src="./pics/jacket.jpg" alt="Product">
-        <div class="bag-details">
-          <h3>VESTRA Denim Jacket</h3>
-          <div class="price">₹2,499</div>
-          <div>Size: M</div>
-          <div class="qty">
-            Quantity:
-            <input type="number" value="1" min="1">
-          </div>
-        </div>
-      </div>
-
+    <div class="bag-items" id="bagItems">
+      <h1 class="bag-title">My Bag</h1>
     </div>
-
-    <div class="summary">
-      <h2>Order Summary</h2>
-
-      <div class="summary-row">
-        <span>Subtotal</span>
-        <span>₹7,498</span>
-      </div>
-
-      <div class="summary-row">
-        <span>Shipping</span>
-        <span>₹99</span>
-      </div>
-
-      <div class="summary-row total">
-        <span>Total</span>
-        <span>₹7,597</span>
-      </div>
-
-      <button class="checkout-btn">Proceed to Checkout</button>
-    </div>
-
-    
+    <div class="summary" id="bagSummary"></div>
   </div>
-<div class="nt">
-  <div class="nxt">
-    <div>
-      <h3>About us</h3><br/>
-      <nav>
-        <a href="./footer things/about us/about.html" target="_blank">Who are we ?</a><br/>
-        <a href="./footer things/about us/terms.html" target="_blank">Terms and Conditions</a>
-      </nav>
+
+  <div class="nt">
+    <div class="nxt">
+      <div>
+        <h3>About us</h3><br/>
+        <nav>
+          <a href="./footer things/about us/about.html" target="_blank">Who are we ?</a><br/>
+          <a href="./footer things/about us/terms.html" target="_blank">Terms and Conditions</a>
+        </nav>
+      </div>
+      <div>
+        <h3>Help</h3><br/>
+        <nav>
+          <a href="./footer things/help/faq.html" target="_blank">Frequently asked questions</a><br/>
+          <a href="./footer things/help/payment.html" target="_blank">Payments</a><br/>
+          <a href="./footer things/help/customerCare.html" target="_blank">Customer Care</a><br/>
+          <a href="./footer things/help/couponCode.html" target="_blank">How do I redeem my coupon code ?</a>
+        </nav>
+      </div>
+      <div>
+        <h3>Shop By</h3><br/>
+        <nav>
+          <a href="./men.html">Men</a><br/>
+          <a href="./women.html">Women</a><br/>
+          <a href="./kids.html">Kids</a><br/>
+          <a href="./footwear.html">Footwear</a><br/>
+          <a href="./beauty.html">Beauty</a>
+        </nav>
+      </div>
+      <div>
+        <h3>Follow us</h3><br/>
+        <nav>
+          <a href="https://www.instagram.com/arnav_astu/" target="_blank">Instagram</a><br/>
+          <a href="https://www.instagram.com/bhadoria_ishan/" target="_blank">Instagram</a><br/>
+          <a href="https://x.com/ArnavAstu" target="_blank">Twitter</a><br/>
+          <a href="#" target="_blank">Twitter</a>
+        </nav>
+      </div>
     </div>
-    <div>
-      <h3>Help</h3><br/>
-      <nav>
-        <a href="./footer things/help/faq.html" target="_blank">Frequently asked questions</a><br/>
-        <a href="./footer things/help/payment.html" target="_blank">Payments</a><br/>
-        <a href="./footer things/help/customerCare.html" target="_blank">Customer Care</a><br/>
-        <a href="./footer things/help/couponCode.html" target="_blank">How do I redeem my coupon code ?</a>
-      </nav>
-    </div>
-    <div>
-      <h3>Shop By</h3><br/>
-      <nav>
-        <a href="./men.html">Men</a><br/>
-        <a href="./women.html">Women</a><br/>
-        <a href="./kids.html">Kids</a><br/>
-        <a href="./footwear.html">Footwear</a><br/>
-        <a href="./footwear.html">Beauty</a>
-      </nav>
-    </div>
-    <div>
-      <h3>Follow us</h3><br/>
-      <nav>
-        <a href="https://www.instagram.com/arnav_astu/" target="_blank">Instagram</a><br/>
-        <a href="https://www.instagram.com/bhadoria_ishan/" target="_blank">Instagram</a><br/>
-        <a href="https://x.com/ArnavAstu" target="_blank">Twitter</a><br/>
-        <a href="#" target="_blank">Twitter</a><br/>
-      </nav>
-    </div>
+    <img src="./temp/num.PNG">
   </div>
-  <img src="./temp/num.PNG">
-</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const itemsContainer = document.getElementById("bagItems");
+  const summaryContainer = document.getElementById("bagSummary");
+
+  function loadBag() {
+    fetch("http://localhost:5000/bag")
+      .then(res => res.json())
+      .then(products => {
+
+        itemsContainer.innerHTML = "<h1 class='bag-title'>My Bag</h1>";
+
+        if (products.length === 0) {
+          itemsContainer.innerHTML += "<h2 class='empty-bag'>Your bag is empty 🛒</h2>";
+          summaryContainer.innerHTML = "";
+          return;
+        }
+
+        let subtotal = 0;
+
+        products.forEach(product => {
+
+          subtotal += product.price * product.quantity;
+
+          const card = document.createElement("div");
+          card.classList.add("bag-card");
+
+          card.innerHTML = `
+            <button class="remove-item">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <img src="${product.image}" alt="${product.name}">
+
+            <div class="bag-details">
+              <h3>${product.name}</h3>
+              <div class="price">₹${product.price}</div>
+              <div class="qty">
+                Quantity:
+                <input type="number" value="${product.quantity}" min="1">
+              </div>
+            </div>
+          `;
+
+          itemsContainer.appendChild(card);
+
+          card.querySelector(".remove-item").addEventListener("click", () => {
+            fetch("http://localhost:5000/bag/" + product.id, {
+              method: "DELETE"
+            }).then(() => loadBag());
+          });
+
+          card.querySelector("input").addEventListener("change", (e) => {
+            fetch("http://localhost:5000/bag/" + product.id, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ quantity: e.target.value })
+            }).then(() => loadBag());
+          });
+
+        });
+
+        const shipping = 99;
+        const total = subtotal + shipping;
+
+        summaryContainer.innerHTML = `
+          <h2>Order Summary</h2>
+
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span>₹${subtotal}</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Shipping</span>
+            <span>₹${shipping}</span>
+          </div>
+
+          <div class="summary-row total">
+            <span>Total</span>
+            <span>₹${total}</span>
+          </div>
+
+          <button class="checkout-btn">Proceed to Checkout</button>
+        `;
+      });
+  }
+
+  loadBag();
+});
+</script>
+
 </body>
 </html>

@@ -105,7 +105,6 @@
 
 <body>
 
-  <!-- HEADER (same as other pages) -->
   <div class="header">
     <div class="imag">
       <img src="./logo/input-onlinepngtools.png" class="im">
@@ -141,79 +140,111 @@
   </div>
 
   <div class="wishlist-container">
-    <h1 class="wishlist-title">My Wishlist (3 Items)</h1>
-
-    <div class="wishlist-grid">
-
-      <div class="wishlist-card">
-        <button class="remove-btn"><i class="fa-solid fa-xmark"></i></button>
-        <img src="./pics/shoe1.jpg" alt="Product">
-        <div class="product-name">VESTRA Air Sneakers</div>
-        <div class="product-price">₹4,999</div>
-        <button class="add-to-bag">Add to Bag</button>
-      </div>
-
-      <div class="wishlist-card">
-        <button class="remove-btn"><i class="fa-solid fa-xmark"></i></button>
-        <img src="./pics/jacket.jpg" alt="Product">
-        <div class="product-name">VESTRA Denim Jacket</div>
-        <div class="product-price">₹2,499</div>
-        <button class="add-to-bag">Add to Bag</button>
-      </div>
-
-      <div class="wishlist-card">
-        <button class="remove-btn"><i class="fa-solid fa-xmark"></i></button>
-        <img src="./pics/watch.jpg" alt="Product">
-        <div class="product-name">VESTRA Blue Facial Cream</div>
-        <div class="product-price">₹1,999</div>
-        <button class="add-to-bag">Add to Bag</button>
-      </div>
-
-    </div>
-
-
+    <h1 class="wishlist-title">My Wishlist</h1>
+    <div class="wishlist-grid" id="wishlistContainer"></div>
   </div>
 
   <div class="nt">
-  <div class="nxt">
-    <div>
-      <h3>About us</h3><br/>
-      <nav>
-        <a href="./footer things/about us/about.html" target="_blank">Who are we ?</a><br/>
-        <a href="./footer things/about us/terms.html" target="_blank">Terms and Conditions</a>
-      </nav>
+    <div class="nxt">
+      <div>
+        <h3>About us</h3><br/>
+        <nav>
+          <a href="./footer things/about us/about.html" target="_blank">Who are we ?</a><br/>
+          <a href="./footer things/about us/terms.html" target="_blank">Terms and Conditions</a>
+        </nav>
+      </div>
+      <div>
+        <h3>Help</h3><br/>
+        <nav>
+          <a href="./footer things/help/faq.html" target="_blank">Frequently asked questions</a><br/>
+          <a href="./footer things/help/payment.html" target="_blank">Payments</a><br/>
+          <a href="./footer things/help/customerCare.html" target="_blank">Customer Care</a><br/>
+          <a href="./footer things/help/couponCode.html" target="_blank">How do I redeem my coupon code ?</a>
+        </nav>
+      </div>
+      <div>
+        <h3>Shop By</h3><br/>
+        <nav>
+          <a href="./men.html">Men</a><br/>
+          <a href="./women.html">Women</a><br/>
+          <a href="./kids.html">Kids</a><br/>
+          <a href="./footwear.html">Footwear</a><br/>
+          <a href="./footwear.html">Beauty</a>
+        </nav>
+      </div>
+      <div>
+        <h3>Follow us</h3><br/>
+        <nav>
+          <a href="https://www.instagram.com/arnav_astu/" target="_blank">Instagram</a><br/>
+          <a href="https://www.instagram.com/bhadoria_ishan/" target="_blank">Instagram</a><br/>
+          <a href="https://x.com/ArnavAstu" target="_blank">Twitter</a><br/>
+          <a href="#" target="_blank">Twitter</a>
+        </nav>
+      </div>
     </div>
-    <div>
-      <h3>Help</h3><br/>
-      <nav>
-        <a href="./footer things/help/faq.html" target="_blank">Frequently asked questions</a><br/>
-        <a href="./footer things/help/payment.html" target="_blank">Payments</a><br/>
-        <a href="./footer things/help/customerCare.html" target="_blank">Customer Care</a><br/>
-        <a href="./footer things/help/couponCode.html" target="_blank">How do I redeem my coupon code ?</a>
-      </nav>
-    </div>
-    <div>
-      <h3>Shop By</h3><br/>
-      <nav>
-        <a href="./men.html">Men</a><br/>
-        <a href="./women.html">Women</a><br/>
-        <a href="./kids.html">Kids</a><br/>
-        <a href="./footwear.html">Footwear</a><br/>
-        <a href="./footwear.html">Beauty</a>
-      </nav>
-    </div>
-    <div>
-      <h3>Follow us</h3><br/>
-      <nav>
-        <a href="https://www.instagram.com/arnav_astu/" target="_blank">Instagram</a><br/>
-        <a href="https://www.instagram.com/bhadoria_ishan/" target="_blank">Instagram</a><br/>
-        <a href="https://x.com/ArnavAstu" target="_blank">Twitter</a><br/>
-        <a href="#" target="_blank">Twitter</a><br/>
-      </nav>
-    </div>
+    <img src="./temp/num.PNG">
   </div>
-  <img src="./temp/num.PNG">
-</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const container = document.getElementById("wishlistContainer");
+
+  function loadWishlist() {
+    fetch("http://localhost:5000/wishlist")
+      .then(res => res.json())
+      .then(products => {
+
+        container.innerHTML = "";
+
+        if (products.length === 0) {
+          container.innerHTML = "<h2 class='empty-wishlist'>Your wishlist is empty ❤️</h2>";
+          return;
+        }
+
+        products.forEach(product => {
+
+          const card = document.createElement("div");
+          card.classList.add("wishlist-card");
+
+          card.innerHTML = `
+            <button class="remove-btn">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <img src="${product.image}" alt="${product.name}">
+            <div class="product-name">${product.name}</div>
+            <div class="product-price">₹${product.price}</div>
+
+            <button class="add-to-bag">
+              Add to Bag
+            </button>
+          `;
+
+          container.appendChild(card);
+
+          card.querySelector(".remove-btn").addEventListener("click", () => {
+            fetch("http://localhost:5000/wishlist/" + product.id, {
+              method: "DELETE"
+            }).then(() => loadWishlist());
+          });
+
+          card.querySelector(".add-to-bag").addEventListener("click", () => {
+            fetch("http://localhost:5000/bag", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ product_id: product.id })
+            }).then(() => alert("Added to Bag"));
+          });
+
+        });
+
+      });
+  }
+
+  loadWishlist();
+});
+</script>
 
 </body>
 </html>
