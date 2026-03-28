@@ -4,17 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shopping Bag - VESTRA</title>
-  <link rel="icon" type="image/x-icon" href="./logo/tb.ico">
+
+  <link rel="icon" href="./logo/tb.ico">
   <link rel="stylesheet" href="style.css">
 
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
 
   <style>
     .bag-container {
@@ -25,9 +22,7 @@
       padding: 20px;
     }
 
-    .bag-items {
-      flex: 2;
-    }
+    .bag-items { flex: 2; }
 
     .bag-title {
       font-family: "Oswald", sans-serif;
@@ -108,7 +103,6 @@
       background: #FFA47F;
       border: none;
       color: white;
-      font-family: "Oswald", sans-serif;
       font-size: 16px;
       border-radius: 5px;
       cursor: pointer;
@@ -120,185 +114,196 @@
       font-family: "Oswald", sans-serif;
       color: #666;
     }
+
+    #qrcode {
+      margin-top: 20px;
+      text-align: center;
+    }
   </style>
 </head>
 
 <body>
 
-  <div class="header">
-    <div class="imag">
-      <img src="./logo/input-onlinepngtools.png" class="im">
-    </div>
-
-    <div class="nav-links">
-      <nav>
-        <a href="./men.html">MEN</a>
-        <a href="./women.html">WOMEN</a>
-        <a href="./kids.html">KIDS</a>
-        <a href="./footwear.html">FOOTWEAR</a>
-        <a href="./beauty.html">BEAUTY</a>
-      </nav>
-    </div>
-
-    <div class="search">
-      <input type="text" class="ss" placeholder="Search for products, brands and more">
-    </div>
-
-    <div class="bag">
-      <div class="action">
-        <a href="./profile.html"><i class="fa-regular fa-user"></i> <span>Profile</span></a>
-      </div>
-
-      <div class="action">
-        <a href="./wishlist.html"><i class="fa-regular fa-heart"></i> <span>Wishlist</span></a>
-      </div>
-
-      <div class="action">
-        <a href="./bag.html"><i class="fa-solid fa-bag-shopping"></i> <span>Bag</span></a>
-      </div>
-    </div>
+<div class="header">
+  <div class="imag">
+    <img src="./logo/input-onlinepngtools.png"
+      class="im"
+      style="cursor:pointer;"
+      onclick="window.location.href='index.html'">
   </div>
 
-  <div class="bag-container">
-    <div class="bag-items" id="bagItems">
-      <h1 class="bag-title">My Bag</h1>
-    </div>
-    <div class="summary" id="bagSummary"></div>
+  <div class="nav-links">
+    <nav>
+      <a href="./men.html">MEN</a>
+      <a href="./women.html">WOMEN</a>
+      <a href="./kids.html">KIDS</a>
+      <a href="./footwear.html">FOOTWEAR</a>
+      <a href="./beauty.html">BEAUTY</a>
+    </nav>
   </div>
 
-  <div class="nt">
-    <div class="nxt">
-      <div>
-        <h3>About us</h3><br/>
-        <nav>
-          <a href="./footer things/about us/about.html" target="_blank">Who are we ?</a><br/>
-          <a href="./footer things/about us/terms.html" target="_blank">Terms and Conditions</a>
-        </nav>
-      </div>
-      <div>
-        <h3>Help</h3><br/>
-        <nav>
-          <a href="./footer things/help/faq.html" target="_blank">Frequently asked questions</a><br/>
-          <a href="./footer things/help/payment.html" target="_blank">Payments</a><br/>
-          <a href="./footer things/help/customerCare.html" target="_blank">Customer Care</a><br/>
-          <a href="./footer things/help/couponCode.html" target="_blank">How do I redeem my coupon code ?</a>
-        </nav>
-      </div>
-      <div>
-        <h3>Shop By</h3><br/>
-        <nav>
-          <a href="./men.html">Men</a><br/>
-          <a href="./women.html">Women</a><br/>
-          <a href="./kids.html">Kids</a><br/>
-          <a href="./footwear.html">Footwear</a><br/>
-          <a href="./beauty.html">Beauty</a>
-        </nav>
-      </div>
-      <div>
-        <h3>Follow us</h3><br/>
-        <nav>
-          <a href="https://www.instagram.com/arnav_astu/" target="_blank">Instagram</a><br/>
-          <a href="https://www.instagram.com/bhadoria_ishan/" target="_blank">Instagram</a><br/>
-          <a href="https://x.com/ArnavAstu" target="_blank">Twitter</a><br/>
-          <a href="#" target="_blank">Twitter</a>
-        </nav>
-      </div>
-    </div>
-    <img src="./temp/num.PNG">
+  <div class="search">
+    <input type="text" class="ss" placeholder="Search...">
   </div>
+
+  <div class="bag">
+    <div class="action"><a href="./profile.html"><i class="fa-regular fa-user"></i><span>Profile</span></a></div>
+    <div class="action"><a href="./wishlist.html"><i class="fa-regular fa-heart"></i><span>Wishlist</span></a></div>
+    <div class="action"><a href="./bag.html"><i class="fa-solid fa-bag-shopping"></i><span>Bag</span></a></div>
+  </div>
+</div>
+
+<div class="bag-container">
+  <div class="bag-items" id="bagItems">
+    <h1 class="bag-title">My Bag</h1>
+  </div>
+
+  <div class="summary" id="bagSummary"></div>
+</div>
+
+<div class="nt">
+  <div class="nxt">
+    <div><h3>About us</h3></div>
+    <div><h3>Help</h3></div>
+    <div><h3>Shop</h3></div>
+    <div><h3>Follow</h3></div>
+  </div>
+</div>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    window.location.href = "login.html";
+    return;
+  }
 
   const itemsContainer = document.getElementById("bagItems");
   const summaryContainer = document.getElementById("bagSummary");
 
   function loadBag() {
-    fetch("http://localhost:5000/bag")
-      .then(res => res.json())
-      .then(products => {
+    fetch("http://localhost:5000/bag", {
+      headers: { Authorization: token }
+    })
+    .then(res => res.json())
+    .then(products => {
 
-        itemsContainer.innerHTML = "<h1 class='bag-title'>My Bag</h1>";
+      itemsContainer.innerHTML = "<h1 class='bag-title'>My Bag</h1>";
 
-        if (products.length === 0) {
-          itemsContainer.innerHTML += "<h2 class='empty-bag'>Your bag is empty 🛒</h2>";
-          summaryContainer.innerHTML = "";
-          return;
-        }
+      if (products.length === 0) {
+        itemsContainer.innerHTML += "<h2 class='empty-bag'>Your bag is empty 🛒</h2>";
+        summaryContainer.innerHTML = "";
+        return;
+      }
 
-        let subtotal = 0;
+      let subtotal = 0;
 
-        products.forEach(product => {
+      products.forEach(product => {
 
-          subtotal += product.price * product.quantity;
+        subtotal += product.price * product.quantity;
 
-          const card = document.createElement("div");
-          card.classList.add("bag-card");
+        const card = document.createElement("div");
+        card.classList.add("bag-card");
 
-          card.innerHTML = `
-            <button class="remove-item">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
+        card.innerHTML = `
+          <button class="remove-item">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
 
-            <img src="${product.image}" alt="${product.name}">
-
-            <div class="bag-details">
-              <h3>${product.name}</h3>
-              <div class="price">₹${product.price}</div>
-              <div class="qty">
-                Quantity:
-                <input type="number" value="${product.quantity}" min="1">
-              </div>
+          <img src="${product.image}">
+          <div class="bag-details">
+            <h3>${product.name}</h3>
+            <div class="price">₹${product.price}</div>
+            <div class="qty">
+              Quantity:
+              <input type="number" value="${product.quantity}" min="1">
             </div>
-          `;
+          </div>
+        `;
 
-          itemsContainer.appendChild(card);
+        itemsContainer.appendChild(card);
 
-          card.querySelector(".remove-item").addEventListener("click", () => {
-            fetch("http://localhost:5000/bag/" + product.id, {
-              method: "DELETE"
-            }).then(() => loadBag());
-          });
-
-          card.querySelector("input").addEventListener("change", (e) => {
-            fetch("http://localhost:5000/bag/" + product.id, {
-              method: "PUT",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ quantity: e.target.value })
-            }).then(() => loadBag());
-          });
-
+        card.querySelector(".remove-item").addEventListener("click", () => {
+          fetch("http://localhost:5000/bag/" + product.id, {
+            method: "DELETE",
+            headers: { Authorization: token }
+          }).then(loadBag);
         });
 
-        const shipping = 99;
-        const total = subtotal + shipping;
+        card.querySelector("input").addEventListener("change", (e) => {
+          fetch("http://localhost:5000/bag/" + product.id, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: token
+            },
+            body: JSON.stringify({ quantity: e.target.value })
+          }).then(loadBag);
+        });
 
-        summaryContainer.innerHTML = `
-          <h2>Order Summary</h2>
-
-          <div class="summary-row">
-            <span>Subtotal</span>
-            <span>₹${subtotal}</span>
-          </div>
-
-          <div class="summary-row">
-            <span>Shipping</span>
-            <span>₹${shipping}</span>
-          </div>
-
-          <div class="summary-row total">
-            <span>Total</span>
-            <span>₹${total}</span>
-          </div>
-
-          <button class="checkout-btn">Proceed to Checkout</button>
-        `;
       });
+
+      const shipping = 99;
+      const total = subtotal + shipping;
+
+      summaryContainer.innerHTML = `
+        <h2>Order Summary</h2>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span>₹${subtotal}</span>
+        </div>
+
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span>₹${shipping}</span>
+        </div>
+
+        <div class="summary-row total">
+          <span>Total</span>
+          <span>₹${total}</span>
+        </div>
+
+        <button class="checkout-btn" onclick="generateQR(${total})">
+          Pay via QR
+        </button>
+
+        <div id="qrcode"></div>
+      `;
+    });
   }
 
   loadBag();
 });
+
+
+function generateQR(amount) {
+
+  const upiID = "arnavastu1@okaxis";  
+  const name = "Vestra";
+
+  const upiLink =
+    "upi://pay?pa=" + upiID +
+    "&pn=" + encodeURIComponent(name) +
+    "&am=" + Number(amount).toFixed(2) +
+    "&cu=INR";
+
+  console.log(upiLink); 
+
+  document.getElementById("qrcode").innerHTML = "";
+
+  new QRCode(document.getElementById("qrcode"), {
+    text: upiLink,
+    width: 200,
+    height: 200
+  });
+}
+
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 </body>
 </html>

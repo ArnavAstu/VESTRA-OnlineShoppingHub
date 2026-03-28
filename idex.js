@@ -1,5 +1,63 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  function isLoggedIn() {
+    return localStorage.getItem("token") !== null;
+  }
+
+  const profileBtn = document.getElementById("profileBtn");
+  const profileText = profileBtn ? profileBtn.querySelector("span") : null;
+
+  if (profileText) {
+    profileText.textContent = isLoggedIn() ? "Account" : "Login";
+  }
+
+  if (profileBtn) {
+    profileBtn.addEventListener("click", () => {
+      if (!isLoggedIn()) {
+        window.location.href = "login.html";
+      } else {
+        window.location.href = "profile.html";
+      }
+    });
+  }
+
+  const bagBtn = document.getElementById("bagBtn");
+  if (bagBtn) {
+    bagBtn.addEventListener("click", () => {
+      if (!isLoggedIn()) {
+        showToast("Please login first 🔐", "error");
+        window.location.href = "login.html";
+      } else {
+        window.location.href = "bag.html";
+      }
+    });
+  }
+
+  const searchBox = document.getElementById("searchBox");
+
+  if (searchBox) {
+    searchBox.addEventListener("keypress", async (e) => {
+      if (e.key === "Enter") {
+        try {
+          const res = await fetch("http://localhost:5000/ai-search", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ query: searchBox.value })
+          });
+
+          const data = await res.json();
+          window.location.href = `./${data.category}.html`;
+
+        } catch (err) {
+          console.error("AI search failed", err);
+          alert("Search error");
+        }
+      }
+    });
+  }
+
   const navLinks = {
     menp: "men.html",
     womenp: "women.html",
@@ -123,6 +181,13 @@ document.addEventListener("DOMContentLoaded", () => {
           container.appendChild(card);
 
           card.querySelector(".add-btn").addEventListener("click", () => {
+
+            if (!isLoggedIn()) {
+              showToast("Please login first 🔐", "error");
+              window.location.href = "login.html";
+              return;
+            }
+
             fetch("http://localhost:5000/bag", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -131,10 +196,16 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(() => showToast("Added to Bag 🛍️"))
             .catch(() => showToast("Something went wrong", "error"));
           });
-
+          
           const wishlistBtn = card.querySelector(".wishlist-btn");
 
           wishlistBtn.addEventListener("click", function () {
+
+            if (!isLoggedIn()) {
+              showToast("Please login first ❤️", "error");
+              window.location.href = "login.html";
+              return;
+            }
 
             if (this.classList.contains("active")) {
 
@@ -190,9 +261,3 @@ function showToast(message, type = "success") {
     toast.className = "toast";
   }, 2500);
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  console.log("JS LOADED");
-
-});
